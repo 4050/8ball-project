@@ -10,7 +10,7 @@ import UIKit
 
 class PickerViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
-    let hardCodeAnswer = HardCodedAnswers()
+    let hardCodeAnswer = HardCodedAnswersModel()
     let picker = UIPickerView()
     
     @IBOutlet weak var textField: UITextField!
@@ -22,7 +22,10 @@ class PickerViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
         picker.delegate = self
         picker.dataSource = self
         
-        textField.inputView = picker 
+        textField.inputView = picker
+        
+        textField.text = hardCodeAnswer.motivationAnswers[0]
+        UserDefaults.standard.set(hardCodeAnswer.motivationAnswers[0], forKey: "answer")
     }
     
     
@@ -40,6 +43,7 @@ class PickerViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+
         UserDefaults.standard.set(hardCodeAnswer.motivationAnswers[row], forKey: "answer")
         textField.text = hardCodeAnswer.motivationAnswers[row]
         self.view.endEditing(false)

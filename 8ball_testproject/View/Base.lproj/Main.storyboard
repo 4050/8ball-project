@@ -100,13 +100,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите предложенный вариант из списка:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PiV-mb-MTk">
-                                <rect key="frame" x="20" y="149" width="363" height="20.5"/>
+                                <rect key="frame" x="26" y="269" width="363" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Нажмите сюда для выбора варианта" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tdn-Ze-C3b">
-                                <rect key="frame" x="20" y="177.5" width="363" height="30"/>
+                                <rect key="frame" x="26" y="297.5" width="363" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -114,16 +114,25 @@
                                     <action selector="textField:" destination="U9V-gt-JNS" eventType="editingDidEnd" id="Zb4-0r-pdl"/>
                                 </connections>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Здесь вы можете выбрать варианты ответа если отключится интернет" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZV-rZ-hSn">
+                                <rect key="frame" x="20" y="120" width="369" height="72"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Tdn-Ze-C3b" firstAttribute="leading" secondItem="LP7-Gv-RbT" secondAttribute="leading" constant="20" id="4ny-ho-Z8t"/>
-                            <constraint firstItem="PiV-mb-MTk" firstAttribute="top" secondItem="LP7-Gv-RbT" secondAttribute="top" constant="61" id="DN8-Wn-lI4"/>
-                            <constraint firstItem="LP7-Gv-RbT" firstAttribute="trailing" secondItem="PiV-mb-MTk" secondAttribute="trailing" constant="31" id="Jnm-tP-G64"/>
-                            <constraint firstItem="PiV-mb-MTk" firstAttribute="leading" secondItem="LP7-Gv-RbT" secondAttribute="leading" constant="20" id="Yxm-ks-ggS"/>
+                            <constraint firstItem="LP7-Gv-RbT" firstAttribute="trailing" secondItem="IZV-rZ-hSn" secondAttribute="trailing" constant="25" id="1yc-bW-uLB"/>
+                            <constraint firstItem="Tdn-Ze-C3b" firstAttribute="leading" secondItem="LP7-Gv-RbT" secondAttribute="leading" constant="26" id="4ny-ho-Z8t"/>
+                            <constraint firstItem="PiV-mb-MTk" firstAttribute="top" secondItem="LP7-Gv-RbT" secondAttribute="top" constant="181" id="DN8-Wn-lI4"/>
+                            <constraint firstItem="LP7-Gv-RbT" firstAttribute="trailing" secondItem="PiV-mb-MTk" secondAttribute="trailing" constant="25" id="Jnm-tP-G64"/>
+                            <constraint firstItem="PiV-mb-MTk" firstAttribute="leading" secondItem="LP7-Gv-RbT" secondAttribute="leading" constant="26" id="Yxm-ks-ggS"/>
                             <constraint firstItem="Tdn-Ze-C3b" firstAttribute="top" secondItem="PiV-mb-MTk" secondAttribute="bottom" constant="8" id="Zea-9T-aWZ"/>
+                            <constraint firstItem="IZV-rZ-hSn" firstAttribute="top" secondItem="LP7-Gv-RbT" secondAttribute="top" constant="32" id="dkN-VW-eNJ"/>
+                            <constraint firstItem="IZV-rZ-hSn" firstAttribute="leading" secondItem="LP7-Gv-RbT" secondAttribute="leading" constant="20" id="hQr-9w-rlP"/>
                             <constraint firstItem="Tdn-Ze-C3b" firstAttribute="top" secondItem="PiV-mb-MTk" secondAttribute="bottom" constant="8" id="ltv-au-VXe"/>
-                            <constraint firstItem="LP7-Gv-RbT" firstAttribute="trailing" secondItem="Tdn-Ze-C3b" secondAttribute="trailing" constant="31" id="mDz-RT-yf6"/>
+                            <constraint firstItem="LP7-Gv-RbT" firstAttribute="trailing" secondItem="Tdn-Ze-C3b" secondAttribute="trailing" constant="25" id="mDz-RT-yf6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LP7-Gv-RbT"/>
                     </view>

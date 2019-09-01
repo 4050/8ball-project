@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,7 @@
 		855EB5A222FC0A99002BEB82 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855EB5A122FC0A99002BEB82 /* ResponseModel.swift */; };
 		857E00572301BBC800DD557C /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857E00562301BBC800DD557C /* PickerViewController.swift */; };
 		85BAB1912309D84900D3C5CF /* HardCodedAnswersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BAB1902309D84900D3C5CF /* HardCodedAnswersModel.swift */; };
+		85DEFB6E231A776E00A91E0E /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DEFB6D231A776E00A91E0E /* Network.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		855EB5A122FC0A99002BEB82 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		857E00562301BBC800DD557C /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		85BAB1902309D84900D3C5CF /* HardCodedAnswersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardCodedAnswersModel.swift; sourceTree = "<group>"; };
+		85DEFB6D231A776E00A91E0E /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +65,6 @@
 				8593CE8C23057ACB00F4EAB4 /* Model */,
 				8593CE8D23057AD300F4EAB4 /* Controller */,
 				8593CE8B23057ABB00F4EAB4 /* View */,
-				8593CE8E23057AF500F4EAB4 /* Supporting Files */,
 				855EB59D22FBF4E6002BEB82 /* Assets.xcassets */,
 				855EB59422FBE3F6002BEB82 /* LaunchScreen.storyboard */,
 				855EB59722FBE3F6002BEB82 /* Info.plist */,
@@ -84,6 +85,7 @@
 			children = (
 				855EB5A122FC0A99002BEB82 /* ResponseModel.swift */,
 				85BAB1902309D84900D3C5CF /* HardCodedAnswersModel.swift */,
+				85DEFB6D231A776E00A91E0E /* Network.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -98,13 +100,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		8593CE8E23057AF500F4EAB4 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -112,11 +107,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 855EB59A22FBE3F6002BEB82 /* Build configuration list for PBXNativeTarget "8ball_testproject" */;
 			buildPhases = (
-				47DB42CE994069EF3598CFCF /* [CP] Check Pods Manifest.lock */,
 				855EB58422FBE3F1002BEB82 /* Sources */,
 				855EB58522FBE3F1002BEB82 /* Frameworks */,
 				855EB58622FBE3F1002BEB82 /* Resources */,
-				D75AD0CAB7DBE4CC6880BDF7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -173,48 +166,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		47DB42CE994069EF3598CFCF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-8ball_testproject-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D75AD0CAB7DBE4CC6880BDF7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-8ball_testproject/Pods-8ball_testproject-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-8ball_testproject/Pods-8ball_testproject-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-8ball_testproject/Pods-8ball_testproject-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		855EB58422FBE3F1002BEB82 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -222,6 +173,7 @@
 			files = (
 				857E00572301BBC800DD557C /* PickerViewController.swift in Sources */,
 				855EB58E22FBE3F1002BEB82 /* MainViewController.swift in Sources */,
+				85DEFB6E231A776E00A91E0E /* Network.swift in Sources */,
 				855EB5A222FC0A99002BEB82 /* ResponseModel.swift in Sources */,
 				85BAB1912309D84900D3C5CF /* HardCodedAnswersModel.swift in Sources */,
 				855EB58C22FBE3F1002BEB82 /* AppDelegate.swift in Sources */,

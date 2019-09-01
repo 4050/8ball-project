@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct HardCodedAnswers {
-    var motivationAnswers  = ["JUST DO IT!!!", "YES!!!", "CHANGE YOUR MIND!!!", "KEEP MOVING!!!"]
+struct HardCodedAnswersModel {
+    var motivationAnswers = ["JUST DO IT!!!", "YES!!!", "CHANGE YOUR MIND!!!", "KEEP MOVING!!!"]
 }
