@@ -9,16 +9,16 @@
 import Foundation
 
 class Network {
-  
-    let ANSWER_URL = "https://8ball.delegator.com/magic/JSON/question"
+
+    let answerURL = "https://8ball.delegator.com/magic/JSON/question"
+
     func getQuestionResponse() {
-        
-        guard let url = URL(string: ANSWER_URL) else { return }
-        
-        URLSession.shared.dataTask(with: url) { (data, response, err) in
+        guard let url = URL(string: answerURL) else { return }
+
+        URLSession.shared.dataTask(with: url) { (data, _, err) in
             if let err = err {
                 print("Failed to get data from URL: ", err)
-                self.sendingData(data: UserDefaults.standard.string(forKey: "answer")!)
+                    self.sendingData(data: UserDefaults.standard.string(forKey: "answer")!)
             }
             guard let data = data else { return }
             do {
@@ -30,10 +30,9 @@ class Network {
             }
         }.resume()
     }
-    
+
     func sendingData(data: String) {
         NotificationCenter.default.post(name: Notification.Name("didReceiveData"), object: data)
     }
-    
-}
 
+}
