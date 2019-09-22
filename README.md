@@ -1,2 +1,2 @@
 # 8ball-project
- Выполненное тестовое задание для Yalantis-iOS-School
+Домашние задания для Yalantis-iOS-School
