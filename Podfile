@@ -8,4 +8,5 @@ target '8ball_testproject' do
   # Pods for 8ball_testproject
   pod 'Alamofire'
   pod 'SwiftLint'
+  pod 'SwiftGen'
 end
