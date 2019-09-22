@@ -1,0 +1,5 @@
+xcassets:
+  inputs: 8ball_testproject/
+  outputs:
+    templateName: swift4
+    output: Assets.swift

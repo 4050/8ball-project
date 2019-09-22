@@ -12,7 +12,9 @@ import CoreData
 class MainViewController: UIViewController {
 
     var network = Network()
-
+    
+   
+    
     //IBOutlets
     @IBOutlet weak var answerLabel: UILabel!
     @IBOutlet weak var textLabel: UILabel!
