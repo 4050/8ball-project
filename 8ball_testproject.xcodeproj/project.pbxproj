@@ -71,10 +71,10 @@
 		855EB58A22FBE3F1002BEB82 /* 8ball_testproject */ = {
 			isa = PBXGroup;
 			children = (
+				85B5595823396F3F00AF465B /* Resources */,
 				8593CE8C23057ACB00F4EAB4 /* Model */,
 				8593CE8D23057AD300F4EAB4 /* Controller */,
 				8593CE8B23057ABB00F4EAB4 /* View */,
-				855EB59D22FBF4E6002BEB82 /* Assets.xcassets */,
 				8503CBFF233811E600B7F1CB /* Assets.swift */,
 				855EB59422FBE3F6002BEB82 /* LaunchScreen.storyboard */,
 				855EB59722FBE3F6002BEB82 /* Info.plist */,
@@ -108,6 +108,14 @@
 				855EB58D22FBE3F1002BEB82 /* MainViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		85B5595823396F3F00AF465B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				855EB59D22FBF4E6002BEB82 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		D647C2AD9F445DD236A7D640 /* Pods */ = {
