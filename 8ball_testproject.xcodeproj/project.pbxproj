@@ -17,7 +17,7 @@
 		855EB5A222FC0A99002BEB82 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855EB5A122FC0A99002BEB82 /* ResponseModel.swift */; };
 		857E00572301BBC800DD557C /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857E00562301BBC800DD557C /* PickerViewController.swift */; };
 		85BAB1912309D84900D3C5CF /* HardCodedAnswersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BAB1902309D84900D3C5CF /* HardCodedAnswersModel.swift */; };
-		85DEFB6E231A776E00A91E0E /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DEFB6D231A776E00A91E0E /* Network.swift */; };
+		85DEFB6E231A776E00A91E0E /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DEFB6D231A776E00A91E0E /* NetworkService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +34,7 @@
 		855EB5A122FC0A99002BEB82 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		857E00562301BBC800DD557C /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		85BAB1902309D84900D3C5CF /* HardCodedAnswersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardCodedAnswersModel.swift; sourceTree = "<group>"; };
-		85DEFB6D231A776E00A91E0E /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		85DEFB6D231A776E00A91E0E /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		9763CEA0DD56BAFA460148CF /* Pods-8ball_testproject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-8ball_testproject.debug.xcconfig"; path = "Target Support Files/Pods-8ball_testproject/Pods-8ball_testproject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,7 +95,7 @@
 			children = (
 				855EB5A122FC0A99002BEB82 /* ResponseModel.swift */,
 				85BAB1902309D84900D3C5CF /* HardCodedAnswersModel.swift */,
-				85DEFB6D231A776E00A91E0E /* Network.swift */,
+				85DEFB6D231A776E00A91E0E /* NetworkService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -283,7 +283,7 @@
 				857E00572301BBC800DD557C /* PickerViewController.swift in Sources */,
 				8503CC00233811E700B7F1CB /* Assets.swift in Sources */,
 				855EB58E22FBE3F1002BEB82 /* MainViewController.swift in Sources */,
-				85DEFB6E231A776E00A91E0E /* Network.swift in Sources */,
+				85DEFB6E231A776E00A91E0E /* NetworkService.swift in Sources */,
 				855EB5A222FC0A99002BEB82 /* ResponseModel.swift in Sources */,
 				85BAB1912309D84900D3C5CF /* HardCodedAnswersModel.swift in Sources */,
 				855EB58C22FBE3F1002BEB82 /* AppDelegate.swift in Sources */,

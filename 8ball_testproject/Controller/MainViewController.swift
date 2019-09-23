@@ -11,7 +11,7 @@ import CoreData
 
 class MainViewController: UIViewController {
 
-    var network = Network()
+    var network = NetworkService()
     let imageItem = Asset.magicEightBall //Added for example
     
     //IBOutlets

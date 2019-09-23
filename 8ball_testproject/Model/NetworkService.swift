@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Network {
+class NetworkService {
 
     let answerURL = "https://8ball.delegator.com/magic/JSON/question"
 
