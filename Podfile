@@ -6,7 +6,7 @@ target '8ball_testproject' do
   use_frameworks!
    
   # Pods for 8ball_testproject
-  pod 'Alamofire'
-  pod 'SwiftLint'
-  pod 'SwiftGen'
+  pod 'Alamofire', '~> 4.8.2'
+  pod 'SwiftLint', '~> 0.34.0'
+  pod 'SwiftGen',  '~> 6.1.0'
 end
