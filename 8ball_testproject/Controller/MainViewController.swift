@@ -7,16 +7,15 @@
 //
 
 import UIKit
-import CoreData
 
 class MainViewController: UIViewController {
 
     var network = NetworkService()
-    let imageItem = Asset.magicEightBall //Added for example
 
     //IBOutlets
     @IBOutlet weak var answerLabel: UILabel!
     @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
 
     // MARK: - View Controller Lifecycle Methods
     override func viewDidLoad() {
@@ -24,6 +23,8 @@ class MainViewController: UIViewController {
             NotificationCenter.default.addObserver(
                                     self, selector: #selector(onDidReceiveData(_:)),
                                     name: Notification.Name("didReceiveData"), object: nil)
+
+        imageView.image = Asset.magicEightBall.image
     }
 
     // MARK: - Method Shake Gesture

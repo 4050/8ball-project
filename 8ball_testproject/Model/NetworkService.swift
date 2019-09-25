@@ -10,14 +10,14 @@ import Foundation
 
 class NetworkService {
 
-    let answerURL = "https://8ball.delegator.com/magic/JSON/question"
+    let answerURL = L10n.URLstring.answerURL
 
     func getQuestionResponse() {
         guard let answerURL = URL(string: answerURL) else { return }
 
         URLSession.shared.dataTask(with: answerURL) { (data, _, error) in
             if let error = error {
-                print("Failed to get data from URL: ", error)
+                print(L10n.Error.failedToGetDataFromURL, error)
                     self.sendingData(data: UserDefaults.standard.string(forKey: "answer")!)
             }
             guard let data = data else { return }
