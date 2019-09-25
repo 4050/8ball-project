@@ -38,16 +38,16 @@ class PickerViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
     }
 
     func pickerView(_ pickerView: UIPickerView,
-                    titleForRow row: Int,
+                    titleForRow rowItem: Int,
                     forComponent component: Int) -> String? {
-        return hardCodeAnswer.motivationAnswers[row]
+        return hardCodeAnswer.motivationAnswers[rowItem]
     }
 
     func pickerView(_ pickerView: UIPickerView,
-                    didSelectRow row: Int,
+                    didSelectRow rowItem: Int,
                     inComponent component: Int) {
-        UserDefaults.standard.set(hardCodeAnswer.motivationAnswers[row], forKey: "answer")
-        textField.text = hardCodeAnswer.motivationAnswers[row]
+        UserDefaults.standard.set(hardCodeAnswer.motivationAnswers[rowItem], forKey: "answer")
+        textField.text = hardCodeAnswer.motivationAnswers[rowItem]
         self.view.endEditing(false)
     }
 

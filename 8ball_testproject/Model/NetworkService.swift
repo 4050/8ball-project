@@ -13,11 +13,11 @@ class NetworkService {
     let answerURL = "https://8ball.delegator.com/magic/JSON/question"
 
     func getQuestionResponse() {
-        guard let url = URL(string: answerURL) else { return }
+        guard let answerURL = URL(string: answerURL) else { return }
 
-        URLSession.shared.dataTask(with: url) { (data, _, err) in
-            if let err = err {
-                print("Failed to get data from URL: ", err)
+        URLSession.shared.dataTask(with: answerURL) { (data, _, error) in
+            if let error = error {
+                print("Failed to get data from URL: ", error)
                     self.sendingData(data: UserDefaults.standard.string(forKey: "answer")!)
             }
             guard let data = data else { return }

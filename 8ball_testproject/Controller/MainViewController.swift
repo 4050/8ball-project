@@ -13,7 +13,7 @@ class MainViewController: UIViewController {
 
     var network = NetworkService()
     let imageItem = Asset.magicEightBall //Added for example
-    
+
     //IBOutlets
     @IBOutlet weak var answerLabel: UILabel!
     @IBOutlet weak var textLabel: UILabel!
@@ -22,9 +22,8 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
             NotificationCenter.default.addObserver(
-                                    self, selector:
-                                    #selector(onDidReceiveData(_:)), name:
-                                    Notification.Name("didReceiveData"), object: nil)
+                                    self, selector: #selector(onDidReceiveData(_:)),
+                                    name: Notification.Name("didReceiveData"), object: nil)
     }
 
     // MARK: - Method Shake Gesture
