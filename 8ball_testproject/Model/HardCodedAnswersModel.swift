@@ -9,6 +9,7 @@
 import Foundation
 
 struct HardCodedAnswersModel {
+
     var motivationAnswers = [L10n.HardCodedAnswers.yes,
                              L10n.HardCodedAnswers.keepMoving,
                              L10n.HardCodedAnswers.justDoIt,
