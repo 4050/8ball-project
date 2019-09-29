@@ -10,7 +10,7 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-    var network: NetworkDataFetcher
+    var network: NetworkDataFetcher!
 
     init(network: NetworkDataFetcher) {
         self.network = network

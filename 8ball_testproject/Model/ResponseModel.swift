@@ -8,10 +8,15 @@
 
 import Foundation
 
-struct Magic: Codable {
-    var magic: Answer
-}
+class DataAnswer {
 
-struct Answer: Codable {
-    var answer: String?
+    struct Magic: Codable {
+        var magic: Answer
+    }
+
+    struct Answer: Codable {
+        var answer: String?
+    }
+
+    
 }

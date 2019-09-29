@@ -15,6 +15,7 @@
 		851F4446233C1DA4000776CE /* Error.strings in Resources */ = {isa = PBXBuildFile; fileRef = 851F4445233C1DA4000776CE /* Error.strings */; };
 		85254BF0233FE41700ADD47B /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85254BEE233FE41700ADD47B /* NetworkDataFetcher.swift */; };
 		85254BF2233FE69600ADD47B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85254BF1233FE69600ADD47B /* NetworkService.swift */; };
+		854F8FEB2340D33F0000D5AC /* ResponseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854F8FEA2340D33F0000D5AC /* ResponseViewModel.swift */; };
 		855EB58C22FBE3F1002BEB82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855EB58B22FBE3F1002BEB82 /* AppDelegate.swift */; };
 		855EB58E22FBE3F1002BEB82 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855EB58D22FBE3F1002BEB82 /* MainViewController.swift */; };
 		855EB59122FBE3F2002BEB82 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 855EB58F22FBE3F2002BEB82 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 		851F4445233C1DA4000776CE /* Error.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Error.strings; sourceTree = "<group>"; };
 		85254BEE233FE41700ADD47B /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkDataFetcher.swift; path = ../../../../../NetworkDataFetcher.swift; sourceTree = "<group>"; };
 		85254BF1233FE69600ADD47B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		854F8FEA2340D33F0000D5AC /* ResponseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseViewModel.swift; sourceTree = "<group>"; };
 		855EB58822FBE3F1002BEB82 /* 8ball_testproject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 8ball_testproject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		855EB58B22FBE3F1002BEB82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		855EB58D22FBE3F1002BEB82 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 		855EB58A22FBE3F1002BEB82 /* 8ball_testproject */ = {
 			isa = PBXGroup;
 			children = (
+				85937DB22340D163005F7B68 /* ViewModel */,
 				85254BEC233FE29100ADD47B /* Services */,
 				851F4439233C0E18000776CE /* SwiftGen */,
 				85B5595823396F3F00AF465B /* Resources */,
@@ -119,6 +122,14 @@
 				855EB59722FBE3F6002BEB82 /* Info.plist */,
 			);
 			path = 8ball_testproject;
+			sourceTree = "<group>";
+		};
+		85937DB22340D163005F7B68 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				854F8FEA2340D33F0000D5AC /* ResponseViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		8593CE8B23057ABB00F4EAB4 /* View */ = {
@@ -337,6 +348,7 @@
 				855EB58E22FBE3F1002BEB82 /* MainViewController.swift in Sources */,
 				85254BF0233FE41700ADD47B /* NetworkDataFetcher.swift in Sources */,
 				855EB5A222FC0A99002BEB82 /* ResponseModel.swift in Sources */,
+				854F8FEB2340D33F0000D5AC /* ResponseViewModel.swift in Sources */,
 				85BAB1912309D84900D3C5CF /* HardCodedAnswersModel.swift in Sources */,
 				855EB58C22FBE3F1002BEB82 /* AppDelegate.swift in Sources */,
 			);
