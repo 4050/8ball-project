@@ -10,8 +10,15 @@ import UIKit
 
 class PickerViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
+    private var hardCodedAnswerViewModel: HardCodedAnswersViewModel!
+
+    func setPickerViewModel(_ pickerViewModel: HardCodedAnswersViewModel) {
+        self.hardCodedAnswerViewModel = pickerViewModel
+    }
+
     let hardCodeAnswer = HardCodedAnswersModel()
     let picker = UIPickerView()
+    var defaultAnswer: [String] = [""]
 
     @IBOutlet weak var textField: UITextField!
 
@@ -23,9 +30,15 @@ class PickerViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
         picker.dataSource = self
 
         textField.inputView = picker
+        defaultAnswer = hardCodedAnswerViewModel.getDefaultAnswer()
 
-        textField.text = hardCodeAnswer.motivationAnswers[0]
-        UserDefaults.standard.set(hardCodeAnswer.motivationAnswers[0], forKey: "answer")
+        textField.text = defaultAnswer[0]
+        UserDefaults.standard.set(defaultAnswer[0], forKey: "answer")
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = true
     }
 
     // MARK: - PickerView
@@ -34,20 +47,20 @@ class PickerViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
     }
 
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return hardCodeAnswer.motivationAnswers.count
+        return defaultAnswer.count
     }
 
     func pickerView(_ pickerView: UIPickerView,
                     titleForRow rowItem: Int,
                     forComponent component: Int) -> String? {
-        return hardCodeAnswer.motivationAnswers[rowItem]
+        return defaultAnswer[rowItem]
     }
 
     func pickerView(_ pickerView: UIPickerView,
                     didSelectRow rowItem: Int,
                     inComponent component: Int) {
-        UserDefaults.standard.set(hardCodeAnswer.motivationAnswers[rowItem], forKey: "answer")
-        textField.text = hardCodeAnswer.motivationAnswers[rowItem]
+        UserDefaults.standard.set(defaultAnswer[rowItem], forKey: "answer")
+        textField.text = defaultAnswer[rowItem]
         self.view.endEditing(false)
     }
 

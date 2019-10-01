@@ -8,3 +8,23 @@
 
 import Foundation
 
+class ResponseViewModel {
+
+    private let responseModel: ResponseModel!
+
+    init(responseModel: ResponseModel) {
+        self.responseModel = responseModel
+    }
+
+    func getData(completion: @escaping (String?) -> Void) {
+        responseModel.getAnswer { (answer) in
+            completion(self.upperString(string: answer!))
+        }
+    }
+}
+
+extension ResponseViewModel {
+    func upperString(string: String) -> String {
+        return string.uppercased()
+    }
+}

@@ -22,6 +22,7 @@
 		855EB59622FBE3F6002BEB82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 855EB59422FBE3F6002BEB82 /* LaunchScreen.storyboard */; };
 		855EB59E22FBF4E7002BEB82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 855EB59D22FBF4E6002BEB82 /* Assets.xcassets */; };
 		855EB5A222FC0A99002BEB82 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855EB5A122FC0A99002BEB82 /* ResponseModel.swift */; };
+		857AAA262343A5E9004C04F9 /* HardCodedAnswersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857AAA252343A5E9004C04F9 /* HardCodedAnswersViewModel.swift */; };
 		857E00572301BBC800DD557C /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857E00562301BBC800DD557C /* PickerViewController.swift */; };
 		85BAB1912309D84900D3C5CF /* HardCodedAnswersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BAB1902309D84900D3C5CF /* HardCodedAnswersModel.swift */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,7 @@
 		855EB59722FBE3F6002BEB82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		855EB59D22FBF4E6002BEB82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		855EB5A122FC0A99002BEB82 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
+		857AAA252343A5E9004C04F9 /* HardCodedAnswersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardCodedAnswersViewModel.swift; sourceTree = "<group>"; };
 		857E00562301BBC800DD557C /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		85BAB1902309D84900D3C5CF /* HardCodedAnswersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardCodedAnswersModel.swift; sourceTree = "<group>"; };
 		9763CEA0DD56BAFA460148CF /* Pods-8ball_testproject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-8ball_testproject.debug.xcconfig"; path = "Target Support Files/Pods-8ball_testproject/Pods-8ball_testproject.debug.xcconfig"; sourceTree = "<group>"; };
@@ -111,11 +113,11 @@
 		855EB58A22FBE3F1002BEB82 /* 8ball_testproject */ = {
 			isa = PBXGroup;
 			children = (
-				85937DB22340D163005F7B68 /* ViewModel */,
 				85254BEC233FE29100ADD47B /* Services */,
 				851F4439233C0E18000776CE /* SwiftGen */,
 				85B5595823396F3F00AF465B /* Resources */,
 				8593CE8C23057ACB00F4EAB4 /* Model */,
+				85937DB22340D163005F7B68 /* ViewModel */,
 				8593CE8D23057AD300F4EAB4 /* Controller */,
 				8593CE8B23057ABB00F4EAB4 /* View */,
 				855EB59422FBE3F6002BEB82 /* LaunchScreen.storyboard */,
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				854F8FEA2340D33F0000D5AC /* ResponseViewModel.swift */,
+				857AAA252343A5E9004C04F9 /* HardCodedAnswersViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				851F443F233C105F000776CE /* Assets.swift in Sources */,
 				855EB58E22FBE3F1002BEB82 /* MainViewController.swift in Sources */,
 				85254BF0233FE41700ADD47B /* NetworkDataFetcher.swift in Sources */,
+				857AAA262343A5E9004C04F9 /* HardCodedAnswersViewModel.swift in Sources */,
 				855EB5A222FC0A99002BEB82 /* ResponseModel.swift in Sources */,
 				854F8FEB2340D33F0000D5AC /* ResponseViewModel.swift in Sources */,
 				85BAB1912309D84900D3C5CF /* HardCodedAnswersModel.swift in Sources */,
