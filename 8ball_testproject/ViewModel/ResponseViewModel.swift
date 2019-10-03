@@ -8,6 +8,10 @@
 
 import Foundation
 
+struct PresentableAnswer {
+    var answer: String
+}
+
 class ResponseViewModel {
 
     private let responseModel: ResponseModel!
@@ -16,15 +20,11 @@ class ResponseViewModel {
         self.responseModel = responseModel
     }
 
-    func getData(completion: @escaping (String?) -> Void) {
+    func getData(completion: @escaping (PresentableAnswer?) -> Void) {
         responseModel.getAnswer { (answer) in
-            completion(self.upperString(string: answer!))
-        }
-    }
-}
+             let answer = answer.map({$0.toPresentableAnswer()})
 
-extension ResponseViewModel {
-    func upperString(string: String) -> String {
-        return string.uppercased()
+            completion(answer)
+        }
     }
 }

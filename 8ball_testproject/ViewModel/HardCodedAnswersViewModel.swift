@@ -16,10 +16,10 @@ class HardCodedAnswersViewModel {
     init(hardCodedAnswersModel: HardCodedAnswersModel) {
         self.hardCodedAnswersModel = hardCodedAnswersModel
     }
-}
 
-extension HardCodedAnswersViewModel {
-    func getDefaultAnswer() -> [String] {
-       return hardCodedAnswersModel.motivationAnswers
-    }
+  // func getSaveAnswer(completion: @escaping (String?) -> Void) {
+  //     hardCodedAnswersModel.getSaveAnswer() { (answer) in
+  //         completion(answer)
+  //     }
+  // }
 }

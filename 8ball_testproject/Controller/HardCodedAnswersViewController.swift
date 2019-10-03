@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PickerViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class HardCodedAnswersViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
     private var hardCodedAnswerViewModel: HardCodedAnswersViewModel!
 
@@ -16,11 +16,10 @@ class PickerViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
         self.hardCodedAnswerViewModel = pickerViewModel
     }
 
-    let hardCodeAnswer = HardCodedAnswersModel()
     let picker = UIPickerView()
     var defaultAnswer: [String] = [""]
 
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet private weak var textField: UITextField!
 
     // MARK: - View Controller Lifecycle Methods
     override func viewDidLoad() {
@@ -30,7 +29,7 @@ class PickerViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
         picker.dataSource = self
 
         textField.inputView = picker
-        defaultAnswer = hardCodedAnswerViewModel.getDefaultAnswer()
+        //defaultAnswer = hardCodedAnswerViewModel.getDefaultAnswer()
 
         textField.text = defaultAnswer[0]
         UserDefaults.standard.set(defaultAnswer[0], forKey: "answer")
@@ -39,6 +38,10 @@ class PickerViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.isHidden = true
+    }
+
+    func setHardCodedAnswersViewModel(_ viewModel: HardCodedAnswersViewModel) {
+        self.hardCodedAnswerViewModel = viewModel
     }
 
     // MARK: - PickerView
