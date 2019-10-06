@@ -21,30 +21,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                         if let mainViewController = storyboard.instantiateViewController(
                             withIdentifier: "MainViewController") as?  ResponseViewController {
-
+                        let persistentService = PersistentServise()
                         let networkService = NetworkService()
-                        let hardCodedAnswerModel = HardCodedAnswersModel()
-
-                        let hardCodedAnswerViewModel =
-                            HardCodedAnswersViewModel(hardCodedAnswersModel: hardCodedAnswerModel)
-
                         let networkDataFetcher = NetworkDataFetcher(networkService: networkService)
-
-                        let responseModel = ResponseModel(networkDataFetch: networkDataFetcher,
-                                                          hardCodedAnswerModel: hardCodedAnswerModel)
-
-                        let responseViewModel = ResponseViewModel(responseModel: responseModel)
+                        let hardCodedAnswerModel =
+                            HardCodedAnswerModel(persistentService: persistentService)
+                        let responseModel =
+                            ResponseModel(networkDataFetch: networkDataFetcher,
+                                          hardCodedAnswerModel: hardCodedAnswerModel)
+                        let responseViewModel =
+                            ResponseViewModel(responseModel: responseModel)
                         mainViewController.setViewModel(responseViewModel)
-
-                        //let pickerView = HardCodedAnswersViewController()
-                        //pickerView.setPickerViewModel(hardCodedAnswerViewModel)
 
                         navigationController =
                                 UINavigationController.init(rootViewController: mainViewController)
                             self.window = UIWindow(frame: UIScreen.main.bounds)
                             self.window?.rootViewController = navigationController
                             self.window?.makeKeyAndVisible()
-
                         }
         return true
     }

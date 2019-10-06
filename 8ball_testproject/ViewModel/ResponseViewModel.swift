@@ -8,10 +8,6 @@
 
 import Foundation
 
-struct PresentableAnswer {
-    var answer: String
-}
-
 class ResponseViewModel {
 
     private let responseModel: ResponseModel!
@@ -22,8 +18,6 @@ class ResponseViewModel {
 
     func getData(completion: @escaping (PresentableAnswer?) -> Void) {
         responseModel.getAnswer { (answer) in
-             let answer = answer.map({$0.toPresentableAnswer()})
-
             completion(answer)
         }
     }

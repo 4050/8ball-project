@@ -12,12 +12,12 @@ class HardCodedAnswersViewController: UIViewController, UIPickerViewDataSource, 
 
     private var hardCodedAnswerViewModel: HardCodedAnswersViewModel!
 
-    func setPickerViewModel(_ pickerViewModel: HardCodedAnswersViewModel) {
-        self.hardCodedAnswerViewModel = pickerViewModel
+    func setPickerModel(_ pickerModel: HardCodedAnswersViewModel) {
+        self.hardCodedAnswerViewModel = pickerModel
     }
 
-    let picker = UIPickerView()
-    var defaultAnswer: [String] = [""]
+    private let picker = UIPickerView()
+    private var defaultAnswers: [PresentableAnswer] = []
 
     @IBOutlet private weak var textField: UITextField!
 
@@ -29,19 +29,17 @@ class HardCodedAnswersViewController: UIViewController, UIPickerViewDataSource, 
         picker.dataSource = self
 
         textField.inputView = picker
-        //defaultAnswer = hardCodedAnswerViewModel.getDefaultAnswer()
 
-        textField.text = defaultAnswer[0]
-        UserDefaults.standard.set(defaultAnswer[0], forKey: "answer")
+        defaultAnswers = hardCodedAnswerViewModel.sendMotivationAnswers()
+
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.navigationBar.isHidden = true
     }
 
-    func setHardCodedAnswersViewModel(_ viewModel: HardCodedAnswersViewModel) {
-        self.hardCodedAnswerViewModel = viewModel
+    func sendIndex(index: Int) {
+        hardCodedAnswerViewModel.sendIndex(index: index)
     }
 
     // MARK: - PickerView
@@ -50,20 +48,20 @@ class HardCodedAnswersViewController: UIViewController, UIPickerViewDataSource, 
     }
 
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return defaultAnswer.count
+        return defaultAnswers.count
     }
 
     func pickerView(_ pickerView: UIPickerView,
                     titleForRow rowItem: Int,
                     forComponent component: Int) -> String? {
-        return defaultAnswer[rowItem]
+        return defaultAnswers[rowItem].answer
     }
 
     func pickerView(_ pickerView: UIPickerView,
                     didSelectRow rowItem: Int,
                     inComponent component: Int) {
-        UserDefaults.standard.set(defaultAnswer[rowItem], forKey: "answer")
-        textField.text = defaultAnswer[rowItem]
+        sendIndex(index: rowItem)
+        textField.text = defaultAnswers[rowItem].answer
         self.view.endEditing(false)
     }
 

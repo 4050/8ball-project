@@ -11,22 +11,25 @@ import Foundation
 class ResponseModel {
 
     private let networkDataFetch: DataFetcher
-    private let hardCodedAnswerModel: HardCodedAnswersModel
+    private let hardCodedAnswerModel: HardCodedAnswerModel
 
-    init(networkDataFetch: NetworkDataFetcher, hardCodedAnswerModel: HardCodedAnswersModel) {
+    init(networkDataFetch: NetworkDataFetcher, hardCodedAnswerModel: HardCodedAnswerModel) {
         self.networkDataFetch = networkDataFetch
         self.hardCodedAnswerModel = hardCodedAnswerModel
     }
 
-    func getAnswer(completion: @escaping (Answer?) -> Void) {
+    func getAnswer(completion: @escaping (PresentableAnswer?) -> Void) {
         networkDataFetch.dataAnswerFetch(urlString: L10n.URLstring.answerURL) { (response, error) in
-            var answer = response.map({$0.toAnswer()})
-            //var saveAnswer: String
+            let responseAnswer = response?.toPresentableAnswer()
+
             if error != nil {
-                    //saveAnswer = UserDefaults.standard.string(forKey: "answer")!
-                } else {
+               self.hardCodedAnswerModel.getSaveAnswer { storedAnswer in
+                    let responseAnswer = storedAnswer.toPresentableAnswer()
+                        completion(responseAnswer)
                     }
-                    completion(answer)
+                } else {
+                    completion(responseAnswer)
+                    }
                 }
             }
         }

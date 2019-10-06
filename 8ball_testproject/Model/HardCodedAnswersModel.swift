@@ -8,10 +8,26 @@
 
 import Foundation
 
-struct HardCodedAnswersModel {
+class HardCodedAnswerModel {
 
-    var motivationAnswers = [ L10n.HardCodedAnswers.yes,
-                              L10n.HardCodedAnswers.keepMoving,
-                              L10n.HardCodedAnswers.justDoIt,
-                              L10n.HardCodedAnswers.changeYourMind ]
+    private let persistentService: PersinstenServise
+
+    init(persistentService: PersinstenServise) {
+        self.persistentService = persistentService
+    }
+
+    func getSaveAnswer(completion: @escaping (Answer) -> Void) {
+        persistentService.getSaveAnswer { storedAnswer in
+            completion(storedAnswer) }
+    }
+
+    func sendIndex(index: Int) {
+        persistentService.sendIndexAnswer(index: index)
+    }
+
+    func sendMotivationAnswers() -> [PresentableAnswer] {
+        let answers = persistentService.sendMotivationAnswers()
+        let presentableAnswers = answers.map { $0.toPresentableAnswer() }
+        return presentableAnswers
+    }
 }

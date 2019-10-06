@@ -25,6 +25,18 @@ class ResponseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.image = Asset.magicEightBall.image
+        navigationController?.navigationBar.isHidden = false
+    }
+
+    // MARK: - Method Shake Gesture
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            responseViewModel.getData { answer in
+                        DispatchQueue.main.async {
+                            self.answerLabel.text = answer?.answer
+                }
+            }
+        }
     }
 
     @IBAction private func settingJump(for segue: UIStoryboardSegue, sender: Any?) {
@@ -34,28 +46,16 @@ class ResponseViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if segue.identifier  == "PickerViewController" {
-            //let persisterService = PersinstenServise()
-            let hardCodedAnswerModel = HardCodedAnswersModel()
+            let persisterService = PersistentServise()
+            let hardCodedAnswerModel = HardCodedAnswerModel(persistentService: persisterService)
             let hardCodedAnswerViewModel =
                 HardCodedAnswersViewModel(hardCodedAnswersModel: hardCodedAnswerModel)
             let pickerView = HardCodedAnswersViewController()
-            pickerView.setPickerViewModel(hardCodedAnswerViewModel)
+            pickerView.setPickerModel(hardCodedAnswerViewModel)
 
             if let viewController = segue.destination as? HardCodedAnswersViewController {
-                viewController.setPickerViewModel(hardCodedAnswerViewModel)
+                viewController.setPickerModel(hardCodedAnswerViewModel)
             }
-        }
-    }
-
-    // MARK: - Method Shake Gesture
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
-            print("shakettru")
-            responseViewModel.getData(completion: { answer in
-                DispatchQueue.main.async {
-                    self.answerLabel.text = answer?.answer
-                }
-            })
         }
     }
 }

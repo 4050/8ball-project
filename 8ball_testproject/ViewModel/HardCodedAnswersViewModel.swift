@@ -11,15 +11,24 @@ import UIKit
 
 class HardCodedAnswersViewModel {
 
-    private let hardCodedAnswersModel: HardCodedAnswersModel
+    private let hardCodedAnswersModel: HardCodedAnswerModel
 
-    init(hardCodedAnswersModel: HardCodedAnswersModel) {
+    init(hardCodedAnswersModel: HardCodedAnswerModel) {
         self.hardCodedAnswersModel = hardCodedAnswersModel
     }
 
-  // func getSaveAnswer(completion: @escaping (String?) -> Void) {
-  //     hardCodedAnswersModel.getSaveAnswer() { (answer) in
-  //         completion(answer)
-  //     }
-  // }
+    func sendMotivationAnswers() -> [PresentableAnswer] {
+        let answers = hardCodedAnswersModel.sendMotivationAnswers()
+        return answers
+    }
+
+    func sendIndex(index: Int) {
+        hardCodedAnswersModel.sendIndex(index: index)
+    }
+
+  //  func getSaveAnswer(completion: @escaping (PresentableAnswer) -> Void) {
+  //      hardCodedAnswersModel.getSaveAnswer { presentableAnswer in
+  //          completion(presentableAnswer)
+  //      }
+  //  }
 }

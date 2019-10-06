@@ -80,6 +80,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="q5p-zk-bWJ">
                             <connections>
                                 <action selector="settingJumpFor:sender:" destination="BYZ-38-t0r" id="YG0-Bo-EF8"/>
+                                <segue destination="LZw-pP-6HD" kind="show" identifier="PickerViewController" id="eAi-n1-e5N"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -101,13 +102,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите предложенный вариант из списка:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PiV-mb-MTk">
-                                <rect key="frame" x="26" y="225" width="363" height="20.5"/>
+                                <rect key="frame" x="26" y="269" width="363" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Нажмите сюда для выбора варианта" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tdn-Ze-C3b">
-                                <rect key="frame" x="26" y="253.5" width="363" height="30"/>
+                                <rect key="frame" x="26" y="297.5" width="363" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -116,7 +117,7 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Здесь вы можете выбрать варианты ответа если отключится интернет" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZV-rZ-hSn">
-                                <rect key="frame" x="20" y="76" width="369" height="41"/>
+                                <rect key="frame" x="20" y="120" width="369" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

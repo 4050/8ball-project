@@ -9,7 +9,7 @@
 import Foundation
 
 protocol DataFetcher {
-    func dataAnswerFetch(urlString: String, completion: @escaping (DataAnswer?, Error?) -> Void)
+    func dataAnswerFetch(urlString: String, completion: @escaping (Answer?, Error?) -> Void)
 }
 
 struct Magic: Codable {
@@ -28,7 +28,7 @@ class NetworkDataFetcher: DataFetcher {
         self.networkService = networkService
     }
 
-    func dataAnswerFetch(urlString: String, completion: @escaping (DataAnswer?, Error?) -> Void) {
+    func dataAnswerFetch(urlString: String, completion: @escaping (Answer?, Error?) -> Void) {
 
         networkService.request(urlString: urlString) { (data, error) in
             if let error = error {
@@ -38,34 +38,16 @@ class NetworkDataFetcher: DataFetcher {
             let decoder = JSONDecoder()
             guard let data = data else { return }
             let response = try? decoder.decode(Magic.self, from: data)
-            let answer = response?.magic
+            let responseAnswer = response?.magic
+            let answer = responseAnswer?.toAnswer()
 
-            let dataAnswer = answer.map {$0.toDataAnswer()}
-
-            completion(dataAnswer, nil)
+            completion(answer, nil)
         }
     }
 }
 
 extension StoregAnswer {
-    func toDataAnswer() -> DataAnswer {
-        return DataAnswer(answer: answer)
+    func toAnswer() -> Answer {
+        return Answer(answer: answer)
     }
 }
-
-//func dataAnswerFetch(urlString: String, completion: @escaping (String, Error?) -> Void) {
-//
-//    networkService.request(urlString: urlString) { (data, error) in
-//        if let error = error {
-//            let response = "false"
-//            print(L10n.Error.errorReceivedRequestingData, error)
-//            completion(response, error)
-//        }
-//
-//        let decoder = JSONDecoder()
-//        guard let data = data else { return }
-//        let response = try? decoder.decode(Magic.self, from: data)
-//
-//        completion((response?.magic.answer)!, error)
-//    }
-//}

@@ -14,6 +14,6 @@ struct DataAnswer {
 
 extension DataAnswer {
     func toAnswer() -> Answer {
-        return Answer(answer: answer!)
+        return Answer(answer: answer)
     }
 }

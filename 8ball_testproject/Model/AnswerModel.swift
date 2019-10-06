@@ -9,11 +9,11 @@
 import Foundation
 
 struct Answer {
-    var answer: String
+    var answer: String?
 }
 
 extension Answer {
     func toPresentableAnswer() -> PresentableAnswer {
-        return PresentableAnswer(answer: answer.uppercased())
+        return PresentableAnswer(answer: answer?.uppercased())
     }
 }
