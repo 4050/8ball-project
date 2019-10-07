@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--VCmain-->
         <scene sceneID="Gmf-5M-LSN">
             <objects>
-                <navigationController id="nOR-Gl-rQ1" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" title="VCmain" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nOR-Gl-rQ1" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uB6-g4-rZM">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -26,10 +26,10 @@
             </objects>
             <point key="canvasLocation" x="-880" y="139"/>
         </scene>
-        <!--MAGIC BALL-->
+        <!--MainViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="_ball_testproject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" title="MainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ResponseViewController" customModule="_ball_testproject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -79,7 +79,8 @@
                     <navigationItem key="navigationItem" title="MAGIC BALL" id="ehg-p0-t44">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="q5p-zk-bWJ">
                             <connections>
-                                <segue destination="LZw-pP-6HD" kind="show" id="3je-cb-gCv"/>
+                                <action selector="settingJumpFor:sender:" destination="BYZ-38-t0r" id="YG0-Bo-EF8"/>
+                                <segue destination="LZw-pP-6HD" kind="show" identifier="PickerViewController" id="eAi-n1-e5N"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -92,10 +93,10 @@
             </objects>
             <point key="canvasLocation" x="-94.20289855072464" y="135.9375"/>
         </scene>
-        <!--Picker View Controller-->
+        <!--PickerViewController-->
         <scene sceneID="dm1-fH-9q4">
             <objects>
-                <viewController id="LZw-pP-6HD" customClass="PickerViewController" customModule="_ball_testproject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PickerViewController" title="PickerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LZw-pP-6HD" customClass="HardCodedAnswersViewController" customModule="_ball_testproject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4FS-U9-Kl7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

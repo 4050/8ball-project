@@ -12,6 +12,8 @@ import Foundation
 // swiftlint:disable nesting type_body_length type_name
 internal enum L10n {
   internal enum Error {
+    /// Error received requesting data
+    internal static let errorReceivedRequestingData = L10n.tr("Error", "Error received requesting data")
     /// Failed to get data from URL: 
     internal static let failedToGetDataFromURL = L10n.tr("Error", "Failed to get data from URL: ")
   }
