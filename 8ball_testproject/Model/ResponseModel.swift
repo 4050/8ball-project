@@ -26,10 +26,10 @@ class ResponseModel {
                self.hardCodedAnswerModel.getSaveAnswer { storedAnswer in
                     let responseAnswer = storedAnswer.toPresentableAnswer()
                         completion(responseAnswer)
-                    }
-                } else {
-                    completion(responseAnswer)
-                    }
-                }
+                        }
+                    } else {
+                completion(responseAnswer)
             }
         }
+    }
+}

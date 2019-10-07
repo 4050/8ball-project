@@ -25,10 +25,4 @@ class HardCodedAnswersViewModel {
     func sendIndex(index: Int) {
         hardCodedAnswersModel.sendIndex(index: index)
     }
-
-  //  func getSaveAnswer(completion: @escaping (PresentableAnswer) -> Void) {
-  //      hardCodedAnswersModel.getSaveAnswer { presentableAnswer in
-  //          completion(presentableAnswer)
-  //      }
-  //  }
 }

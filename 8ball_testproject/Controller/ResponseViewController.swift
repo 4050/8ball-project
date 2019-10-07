@@ -46,11 +46,7 @@ class ResponseViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if segue.identifier  == "PickerViewController" {
-            let persisterService = PersistentServise()
-            let hardCodedAnswerModel = HardCodedAnswerModel(persistentService: persisterService)
-            let hardCodedAnswerViewModel =
-                HardCodedAnswersViewModel(hardCodedAnswersModel: hardCodedAnswerModel)
-            let pickerView = HardCodedAnswersViewController()
+            let hardCodedAnswerViewModel = HardCodedAnswersViewController()
             pickerView.setPickerModel(hardCodedAnswerViewModel)
 
             if let viewController = segue.destination as? HardCodedAnswersViewController {

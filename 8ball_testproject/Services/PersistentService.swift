@@ -48,8 +48,3 @@ class PersistentServise: PersinstenServise {
     }
 }
 
-// extension MotivationAnswer {
-//     func toDataAnswer() -> DataAnswer {
-//         return DataAnswer(answer: answer)
-//     }
-// }
