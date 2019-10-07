@@ -15,4 +15,3 @@ struct Magic: Codable {
 struct Answer: Codable {
     var answer: String?
 }
-

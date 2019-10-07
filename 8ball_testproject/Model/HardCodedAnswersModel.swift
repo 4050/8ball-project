@@ -9,5 +9,8 @@
 import Foundation
 
 struct HardCodedAnswersModel {
-    var motivationAnswers = ["JUST DO IT!!!", "YES!!!", "CHANGE YOUR MIND!!!", "KEEP MOVING!!!"]
+    var motivationAnswers = [L10n.HardCodedAnswers.yes,
+                             L10n.HardCodedAnswers.keepMoving,
+                             L10n.HardCodedAnswers.justDoIt,
+                             L10n.HardCodedAnswers.changeYourMind]
 }

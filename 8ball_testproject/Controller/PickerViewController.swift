@@ -12,40 +12,42 @@ class PickerViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
 
     let hardCodeAnswer = HardCodedAnswersModel()
     let picker = UIPickerView()
-    
+
     @IBOutlet weak var textField: UITextField!
-    
+
     // MARK: - View Controller Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         picker.delegate = self
         picker.dataSource = self
-        
+
         textField.inputView = picker
-        
+
         textField.text = hardCodeAnswer.motivationAnswers[0]
         UserDefaults.standard.set(hardCodeAnswer.motivationAnswers[0], forKey: "answer")
     }
-    
-    
+
     // MARK: - PickerView
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
+
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return hardCodeAnswer.motivationAnswers.count
     }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return hardCodeAnswer.motivationAnswers[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 
-        UserDefaults.standard.set(hardCodeAnswer.motivationAnswers[row], forKey: "answer")
-        textField.text = hardCodeAnswer.motivationAnswers[row]
+    func pickerView(_ pickerView: UIPickerView,
+                    titleForRow rowItem: Int,
+                    forComponent component: Int) -> String? {
+        return hardCodeAnswer.motivationAnswers[rowItem]
+    }
+
+    func pickerView(_ pickerView: UIPickerView,
+                    didSelectRow rowItem: Int,
+                    inComponent component: Int) {
+        UserDefaults.standard.set(hardCodeAnswer.motivationAnswers[rowItem], forKey: "answer")
+        textField.text = hardCodeAnswer.motivationAnswers[rowItem]
         self.view.endEditing(false)
     }
 

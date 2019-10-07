@@ -1,0 +1,11 @@
+strings:
+  inputs: 8ball_testproject/Resources
+  filter: .+\.strings$
+  outputs:
+    templateName: structured-swift4
+    output: 8ball_testproject/SwiftGen/Strings.swift
+xcassets:
+  inputs: 8ball_testproject/Resources
+  outputs:
+    templateName: swift4
+    output: 8ball_testproject/SwiftGen/Assets.swift
