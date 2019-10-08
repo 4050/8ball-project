@@ -47,4 +47,3 @@ class PersistentServise: PersinstenServise {
             return answers
     }
 }
-

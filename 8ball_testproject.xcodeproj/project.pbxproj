@@ -72,6 +72,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		85122AD4234D1D2F00E2BEFF /* GCD */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GCD;
+			sourceTree = "<group>";
+		};
 		851F4439233C0E18000776CE /* SwiftGen */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +112,7 @@
 		855EB57F22FBE3F1002BEB82 = {
 			isa = PBXGroup;
 			children = (
+				85122AD4234D1D2F00E2BEFF /* GCD */,
 				855EB58A22FBE3F1002BEB82 /* 8ball_testproject */,
 				855EB58922FBE3F1002BEB82 /* Products */,
 				D647C2AD9F445DD236A7D640 /* Pods */,
