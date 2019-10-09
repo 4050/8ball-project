@@ -27,6 +27,18 @@ internal enum L10n {
     /// YES!!!
     internal static let yes = L10n.tr("HardCodedAnswers", "YES!!!")
   }
+  internal enum Text {
+    /// ASK ME ANYTHING
+    internal static let askMeAnything = L10n.tr("Text", "ASK ME ANYTHING")
+    /// I AM A MAGIC BALL
+    internal static let iAmAMagicBall = L10n.tr("Text", "I AM A MAGIC BALL")
+    /// Нажмите сюда:
+    internal static let pressHere = L10n.tr("Text", "pressHere")
+    /// shake me!
+    internal static let shakeMe = L10n.tr("Text", "shake me!")
+    /// Здесь вы можете выбрать варианты ответа если отключится интернет. Выберите предложенный вариант из списка:
+    internal static let textForSecondController = L10n.tr("Text", "textForSecondController")
+  }
   internal enum URLstring {
     /// https://8ball.delegator.com/magic/JSON/question
     internal static let answerURL = L10n.tr("URLstring", "answerURL")

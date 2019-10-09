@@ -9,5 +9,5 @@
 import Foundation
 
 struct PresentableAnswer {
-    var answer: String?
+    var answer: String
 }

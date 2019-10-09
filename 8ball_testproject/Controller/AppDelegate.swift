@@ -14,26 +14,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
-                     -> Bool {
+        -> Bool {
 
-                    let navigationController: UINavigationController
-                      let persistentService = PersistentServise()
-                      let networkService = NetworkService()
-                      let networkDataFetcher = NetworkDataFetcher(networkService: networkService)
-                      let hardCodedAnswerModel =
-                          HardCodedAnswerModel(persistentService: persistentService)
-                      let responseModel =
-                          ResponseModel(networkDataFetch: networkDataFetcher,
-                                        hardCodedAnswerModel: hardCodedAnswerModel)
-                      let responseViewModel =
-                          ResponseViewModel(responseModel: responseModel)
-                        let homeViewController = ResponseViewController()
-                      homeViewController.setViewModel(responseViewModel)
-                      navigationController =
-                              UINavigationController.init(rootViewController: homeViewController)
-                          self.window = UIWindow(frame: UIScreen.main.bounds)
-                          self.window?.rootViewController = navigationController
-                          self.window?.makeKeyAndVisible()
-        return true
+            let persistentService = PersistentServise()
+            let networkService = NetworkService()
+            let networkDataFetcher = NetworkDataFetcher(networkService: networkService)
+            let hardCodedAnswerModel =
+                HardCodedAnswerModel(persistentService: persistentService)
+            let responseModel =
+                ResponseModel(networkDataFetch: networkDataFetcher,
+                              hardCodedAnswerModel: hardCodedAnswerModel)
+            let responseViewModel =
+                ResponseViewModel(responseModel: responseModel)
+            let homeViewController = ResponseViewController(responseViewModel: responseViewModel)
+            let navigationController: UINavigationController =
+                UINavigationController(rootViewController: homeViewController)
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            self.window?.rootViewController = navigationController
+            self.window?.makeKeyAndVisible()
+            return true
     }
 }
