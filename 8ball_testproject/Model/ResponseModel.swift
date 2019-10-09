@@ -8,10 +8,28 @@
 
 import Foundation
 
-struct Magic: Codable {
-    var magic: Answer
-}
+class ResponseModel {
 
-struct Answer: Codable {
-    var answer: String?
+    private let networkDataFetch: DataFetcher
+    private let hardCodedAnswerModel: HardCodedAnswerModel
+
+    init(networkDataFetch: NetworkDataFetcher, hardCodedAnswerModel: HardCodedAnswerModel) {
+        self.networkDataFetch = networkDataFetch
+        self.hardCodedAnswerModel = hardCodedAnswerModel
+    }
+
+    func getAnswer(completion: @escaping (PresentableAnswer?) -> Void) {
+        networkDataFetch.dataAnswerFetch(urlString: L10n.URLstring.answerURL) { (response, error) in
+            let responseAnswer = response?.toPresentableAnswer()
+
+            if error != nil {
+               self.hardCodedAnswerModel.getSaveAnswer { storedAnswer in
+                    let responseAnswer = storedAnswer.toPresentableAnswer()
+                        completion(responseAnswer)
+                        }
+                    } else {
+                completion(responseAnswer)
+            }
+        }
+    }
 }

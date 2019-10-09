@@ -8,12 +8,18 @@
 
 import UIKit
 
-class PickerViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class HardCodedAnswersViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
-    let hardCodeAnswer = HardCodedAnswersModel()
-    let picker = UIPickerView()
+    private var hardCodedAnswerViewModel: HardCodedAnswersViewModel!
 
-    @IBOutlet weak var textField: UITextField!
+    func setPickerModel(_ pickerModel: HardCodedAnswersViewModel) {
+        self.hardCodedAnswerViewModel = pickerModel
+    }
+
+    private let picker = UIPickerView()
+    private var defaultAnswers: [PresentableAnswer] = []
+
+    @IBOutlet private weak var textField: UITextField!
 
     // MARK: - View Controller Lifecycle Methods
     override func viewDidLoad() {
@@ -24,8 +30,16 @@ class PickerViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
 
         textField.inputView = picker
 
-        textField.text = hardCodeAnswer.motivationAnswers[0]
-        UserDefaults.standard.set(hardCodeAnswer.motivationAnswers[0], forKey: "answer")
+        defaultAnswers = hardCodedAnswerViewModel.sendMotivationAnswers()
+
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+
+    func sendIndex(index: Int) {
+        hardCodedAnswerViewModel.sendIndex(index: index)
     }
 
     // MARK: - PickerView
@@ -34,20 +48,20 @@ class PickerViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
     }
 
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return hardCodeAnswer.motivationAnswers.count
+        return defaultAnswers.count
     }
 
     func pickerView(_ pickerView: UIPickerView,
                     titleForRow rowItem: Int,
                     forComponent component: Int) -> String? {
-        return hardCodeAnswer.motivationAnswers[rowItem]
+        return defaultAnswers[rowItem].answer
     }
 
     func pickerView(_ pickerView: UIPickerView,
                     didSelectRow rowItem: Int,
                     inComponent component: Int) {
-        UserDefaults.standard.set(hardCodeAnswer.motivationAnswers[rowItem], forKey: "answer")
-        textField.text = hardCodeAnswer.motivationAnswers[rowItem]
+        sendIndex(index: rowItem)
+        textField.text = defaultAnswers[rowItem].answer
         self.view.endEditing(false)
     }
 
