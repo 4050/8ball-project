@@ -23,11 +23,10 @@ class ResponseModel {
             let responseAnswer = response?.toPresentableAnswer()
 
             if error != nil {
-               self.hardCodedAnswerModel.getSaveAnswer { storedAnswer in
-                    let responseAnswer = storedAnswer.toPresentableAnswer()
-                        completion(responseAnswer)
-                        }
-                    } else {
+                let answer = self.hardCodedAnswerModel.getSaveAnswer()
+                let responseAnswer = answer.toPresentableAnswer()
+                completion(responseAnswer)
+            } else {
                 completion(responseAnswer)
             }
         }

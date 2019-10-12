@@ -9,9 +9,9 @@
 import Foundation
 
 protocol PersinstenServise {
-    func sendMotivationAnswers() -> [Answer]
-    func getSaveAnswer(completion: @escaping(Answer) -> Void)
-    func sendIndexAnswer(index: Int)
+    func getMotivationAnswers() -> [Answer]
+    func getSaveAnswer() -> Answer
+    func saveIndexAnswer(index: Int)
 
 }
 
@@ -31,20 +31,19 @@ class PersistentServise: PersinstenServise {
 
     private let hardAnswer = HardCodedAnswers()
 
-    func getSaveAnswer(completion: @escaping (Answer) -> Void) {
+    func getSaveAnswer() -> Answer {
         let index = UserDefaults.standard.integer(forKey: "answer")
         let decodeAnswer = hardAnswer.answers[index]
         let storedAnswer = decodeAnswer.toAnswer()
-        completion(storedAnswer)
+        return storedAnswer
     }
 
-    func sendIndexAnswer(index: Int) {
+    func saveIndexAnswer(index: Int) {
         UserDefaults.standard.set(index, forKey: "answer")
     }
 
-     func sendMotivationAnswers() -> [Answer] {
+     func getMotivationAnswers() -> [Answer] {
         let answers = hardAnswer.answers.map { $0.toAnswer() }
             return answers
     }
 }
-

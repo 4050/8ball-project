@@ -17,12 +17,12 @@ class HardCodedAnswersViewModel {
         self.hardCodedAnswersModel = hardCodedAnswersModel
     }
 
-    func sendMotivationAnswers() -> [PresentableAnswer] {
-        let answers = hardCodedAnswersModel.sendMotivationAnswers()
+    func getMotivationAnswers() -> [PresentableAnswer] {
+        let answers = hardCodedAnswersModel.getMotivationAnswers()
         return answers
     }
 
-    func sendIndex(index: Int) {
-        hardCodedAnswersModel.sendIndex(index: index)
+    func saveIndex(index: Int) {
+        hardCodedAnswersModel.saveIndex(index: index)
     }
 }

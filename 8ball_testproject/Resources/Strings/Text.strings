@@ -1,0 +1,13 @@
+/* 
+  Text.strings
+  8ball_testproject
+
+  Created by Станислав on 09/10/2019.
+  Copyright © 2019 Stanislav Buryan. All rights reserved.
+*/
+
+"textForSecondController" = "Здесь вы можете выбрать варианты ответа если отключится интернет. Выберите предложенный вариант из списка:";
+"I AM A MAGIC BALL" = "I AM A MAGIC BALL";
+"ASK ME ANYTHING" = "ASK ME ANYTHING";
+"shake me!" = "shake me!";
+"pressHere" = "Нажмите сюда:";

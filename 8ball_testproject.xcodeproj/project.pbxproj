@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6B2211E9C43F704217C0BCF4 /* Pods_8ball_testproject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 341C5AA90E0181FCEE97A60D /* Pods_8ball_testproject.framework */; };
+		8514C96E234E1868000E2D43 /* Text.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8514C96D234E1868000E2D43 /* Text.strings */; };
 		851C543A2345C70C00A99261 /* DataAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851C54392345C70C00A99261 /* DataAnswer.swift */; };
 		851C543C2345DAFD00A99261 /* AnswerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851C543B2345DAFD00A99261 /* AnswerModel.swift */; };
 		851C543E2345DC5500A99261 /* PersistentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851C543D2345DC5500A99261 /* PersistentService.swift */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		217C41F4EDEFE08FA8380964 /* Pods-8ball_testproject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-8ball_testproject.release.xcconfig"; path = "Target Support Files/Pods-8ball_testproject/Pods-8ball_testproject.release.xcconfig"; sourceTree = "<group>"; };
 		341C5AA90E0181FCEE97A60D /* Pods_8ball_testproject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_8ball_testproject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8514C96D234E1868000E2D43 /* Text.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Text.strings; sourceTree = "<group>"; };
 		851C54392345C70C00A99261 /* DataAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAnswer.swift; sourceTree = "<group>"; };
 		851C543B2345DAFD00A99261 /* AnswerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerModel.swift; sourceTree = "<group>"; };
 		851C543D2345DC5500A99261 /* PersistentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentService.swift; sourceTree = "<group>"; };
@@ -72,6 +74,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		85122AD4234D1D2F00E2BEFF /* GCD */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GCD;
+			sourceTree = "<group>";
+		};
 		851F4439233C0E18000776CE /* SwiftGen */ = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +96,7 @@
 				851F4441233C11A7000776CE /* URLstring.strings */,
 				851F4443233C1A81000776CE /* HardCodedAnswers.strings */,
 				851F4445233C1DA4000776CE /* Error.strings */,
+				8514C96D234E1868000E2D43 /* Text.strings */,
 			);
 			path = Strings;
 			sourceTree = "<group>";
@@ -105,6 +115,7 @@
 		855EB57F22FBE3F1002BEB82 = {
 			isa = PBXGroup;
 			children = (
+				85122AD4234D1D2F00E2BEFF /* GCD */,
 				855EB58A22FBE3F1002BEB82 /* 8ball_testproject */,
 				855EB58922FBE3F1002BEB82 /* Products */,
 				D647C2AD9F445DD236A7D640 /* Pods */,
@@ -265,6 +276,7 @@
 				855EB59622FBE3F6002BEB82 /* LaunchScreen.storyboard in Resources */,
 				855EB59E22FBF4E7002BEB82 /* Assets.xcassets in Resources */,
 				855EB59122FBE3F2002BEB82 /* Main.storyboard in Resources */,
+				8514C96E234E1868000E2D43 /* Text.strings in Resources */,
 				851F4446233C1DA4000776CE /* Error.strings in Resources */,
 				851F4442233C11A7000776CE /* URLstring.strings in Resources */,
 				851F4444233C1A81000776CE /* HardCodedAnswers.strings in Resources */,

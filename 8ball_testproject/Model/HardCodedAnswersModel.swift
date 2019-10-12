@@ -16,17 +16,17 @@ class HardCodedAnswerModel {
         self.persistentService = persistentService
     }
 
-    func getSaveAnswer(completion: @escaping (Answer) -> Void) {
-        persistentService.getSaveAnswer { storedAnswer in
-            completion(storedAnswer) }
+    func getSaveAnswer() -> Answer {
+        let answer = persistentService.getSaveAnswer()
+        return answer
     }
 
-    func sendIndex(index: Int) {
-        persistentService.sendIndexAnswer(index: index)
+    func saveIndex(index: Int) {
+        persistentService.saveIndexAnswer(index: index)
     }
 
-    func sendMotivationAnswers() -> [PresentableAnswer] {
-        let answers = persistentService.sendMotivationAnswers()
+    func getMotivationAnswers() -> [PresentableAnswer] {
+        let answers = persistentService.getMotivationAnswers()
         let presentableAnswers = answers.map { $0.toPresentableAnswer() }
         return presentableAnswers
     }
