@@ -14,6 +14,6 @@ struct Answer {
 
 extension Answer {
     func toPresentableAnswer() -> PresentableAnswer {
-        return PresentableAnswer(answer: (answer?.uppercased())!)
+        return PresentableAnswer(answer: answer?.uppercased())
     }
 }
