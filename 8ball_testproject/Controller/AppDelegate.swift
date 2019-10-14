@@ -7,31 +7,25 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    private let storageService = StorageAnswerService()
     var window: UIWindow?
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
         -> Bool {
 
-            let persistentService = PersistentServise()
-            let networkService = NetworkService()
-            let networkDataFetcher = NetworkDataFetcher(networkService: networkService)
-            let hardCodedAnswerModel =
-                HardCodedAnswerModel(persistentService: persistentService)
-            let responseModel =
-                ResponseModel(networkDataFetch: networkDataFetcher,
-                              hardCodedAnswerModel: hardCodedAnswerModel)
-            let responseViewModel =
-                ResponseViewModel(responseModel: responseModel)
-            let homeViewController = ResponseViewController(responseViewModel: responseViewModel)
-            let navigationController: UINavigationController =
-                UINavigationController(rootViewController: homeViewController)
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            self.window?.rootViewController = navigationController
-            self.window?.makeKeyAndVisible()
+            window = UIWindow(frame: UIScreen.main.bounds)
+            window?.rootViewController = UINavigationController(rootViewController: TabViewController())
+            window?.makeKeyAndVisible()
+
             return true
+    }
+
+    func applicationWillTerminate(_ application: UIApplication) {
+        storageService.saveContex()
     }
 }

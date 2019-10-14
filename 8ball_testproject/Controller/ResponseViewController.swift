@@ -66,23 +66,13 @@ class ResponseViewController: UIViewController {
     // MARK: - View Controller Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationController?.navigationBar.isHidden = false
-
         view.backgroundColor = .white
-
         view.addSubview(ballImage)
         view.addSubview(magicLabel)
         view.addSubview(askLabel)
         view.addSubview(answerLabel)
         setupLayout()
-
-        navigationItem.rightBarButtonItem =
-            UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose,
-                            target: self,
-                            action: #selector (jump))
     }
-
     // MARK: - Method Shake Gesture
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
@@ -92,16 +82,6 @@ class ResponseViewController: UIViewController {
                 }
             }
         }
-    }
-
-    @objc func jump() {
-        let persisterService = PersistentServise()
-        let hardCodedAnswerModel = HardCodedAnswerModel(persistentService: persisterService)
-        let hardCodedAnswerViewModel =
-            HardCodedAnswersViewModel(hardCodedAnswersModel: hardCodedAnswerModel)
-        let hardCodedAnswersViewController = HardCodedAnswersViewController(
-            hardCodedAnswerViewModel: hardCodedAnswerViewModel)
-        self.navigationController?.pushViewController(hardCodedAnswersViewController, animated: true)
     }
 
     private func setupLayout() {

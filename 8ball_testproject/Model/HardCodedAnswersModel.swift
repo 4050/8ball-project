@@ -10,23 +10,21 @@ import Foundation
 
 class HardCodedAnswerModel {
 
-    private let persistentService: PersinstenServise
+    private let storageAnswer: PersistenceStore
 
-    init(persistentService: PersinstenServise) {
-        self.persistentService = persistentService
+    init( storageAnswer: PersistenceStore) {
+        self.storageAnswer = storageAnswer
     }
 
     func getSaveAnswer() -> Answer {
-        let answer = persistentService.getSaveAnswer()
+        let storage = storageAnswer.getMotivationAnswers()
+        let number = Int.random(in: 0 ..< storage.count)
+        let answer = storage[number]
         return answer
     }
 
-    func saveIndex(index: Int) {
-        persistentService.saveIndexAnswer(index: index)
-    }
-
     func getMotivationAnswers() -> [PresentableAnswer] {
-        let answers = persistentService.getMotivationAnswers()
+        let answers = storageAnswer.getMotivationAnswers()
         let presentableAnswers = answers.map { $0.toPresentableAnswer() }
         return presentableAnswers
     }

@@ -19,10 +19,7 @@ class HardCodedAnswersViewModel {
 
     func getMotivationAnswers() -> [PresentableAnswer] {
         let answers = hardCodedAnswersModel.getMotivationAnswers()
+        print("viewModel\(answers)")
         return answers
-    }
-
-    func saveIndex(index: Int) {
-        hardCodedAnswersModel.saveIndex(index: index)
     }
 }
