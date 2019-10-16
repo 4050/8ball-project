@@ -9,9 +9,9 @@
 import UIKit
 
 class ResponseViewController: UIViewController {
-
+    
     private var responseViewModel: ResponseViewModel
-
+    
     private let answerLabel: UILabel = {
         let label = UILabel()
         label.text = L10n.Text.shakeMe
@@ -22,7 +22,7 @@ class ResponseViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
     private let magicLabel: UILabel = {
         let label = UILabel()
         label.text = L10n.Text.iAmAMagicBall
@@ -33,7 +33,7 @@ class ResponseViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
     private let askLabel: UILabel = {
         let label = UILabel()
         label.text = L10n.Text.askMeAnything
@@ -44,7 +44,7 @@ class ResponseViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
     private let ballImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = Asset.magicEightBall.image
@@ -53,16 +53,16 @@ class ResponseViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-
+    
     init(responseViewModel: ResponseViewModel) {
         self.responseViewModel = responseViewModel
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // MARK: - View Controller Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,29 +83,29 @@ class ResponseViewController: UIViewController {
             }
         }
     }
-
+    
     private func setupLayout() {
         magicLabel.topAnchor.constraint(
             equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         magicLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
         magicLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
-
+        
         askLabel.topAnchor.constraint(equalTo: magicLabel.bottomAnchor, constant: 10).isActive = true
         askLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
         askLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
-
+        
         answerLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 25).isActive = true
         answerLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 25).isActive = true
         answerLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
         answerLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
-
+        
         ballImage.topAnchor.constraint(
             equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
         ballImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
         ballImage.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
         ballImage.bottomAnchor.constraint(
             equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 10).isActive = true
-
+        
     }
-
+    
 }
