@@ -13,6 +13,7 @@ class HardCodedAnswersTableViewController: UIViewController, UITabBarDelegate {
 
     private let tableView = UITableView()
     private var safeArea: UILayoutGuide!
+    private var alertTextFiled = UITextField()
     private var defaultAnswers: [PresentableAnswer] = []
     private var hardCodedAnswerViewModel: HardCodedAnswersViewModel
 
@@ -30,7 +31,8 @@ class HardCodedAnswersTableViewController: UIViewController, UITabBarDelegate {
         tableView.dataSource = self
         view.backgroundColor = .white
         safeArea = view.layoutMarginsGuide
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+        navigationItem.rightBarButtonItem =
+            UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(saveButton))
         setupTableView()
     }
 
@@ -47,21 +49,31 @@ class HardCodedAnswersTableViewController: UIViewController, UITabBarDelegate {
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UITableViewCell.self,
+                           forCellReuseIdentifier: String(describing: UITableViewCell.self))
     }
 
     @objc
-    func addTapped() {
-        let alert = UIAlertController(title: "Add custom answer ", message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+    func saveButton() {
+        let alert = UIAlertController(title: L10n.Title.addCustomAnswer, message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: L10n.Title.cancel, style: .cancel, handler: nil))
 
         alert.addTextField(configurationHandler: { textField in
-            textField.placeholder = "Input your answer"
+            textField.placeholder = L10n.Title.inputYourAnswer
+            self.alertTextFiled = textField
         })
-        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
-            let name = alert.textFields?.first?.text
-            self.hardCodedAnswerViewModel.saveCustomAnswer(answer: PresentableAnswer(answer: name))
-            self.viewWillAppear(true)
+
+        alert.addAction(UIAlertAction(title: L10n.Title.add, style: .default, handler: {_ in
+            if let text = self.alertTextFiled.text, !text.isEmpty {
+                let answer = alert.textFields?.first?.text
+                self.hardCodedAnswerViewModel.saveCustomAnswer(answer: PresentableAnswer(answer: answer))
+                self.defaultAnswers = self.hardCodedAnswerViewModel.getMotivationAnswers()
+                self.tableView.reloadData()
+                // Решил пока сделать так, но я помню про NSFRC и хочу в будущем работать через него.
+                // Очень надеюсь, что так делать не запрещено
+            } else {
+                return
+            }
         }))
         self.present(alert, animated: true, completion: nil)
     }
@@ -73,8 +85,8 @@ extension HardCodedAnswersTableViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self),
+                                                 for: indexPath)
         let answer = defaultAnswers[indexPath.row]
         cell.textLabel?.text = answer.answer
         return cell

@@ -39,6 +39,16 @@ internal enum L10n {
     /// Здесь вы можете выбрать варианты ответа если отключится интернет. Выберите предложенный вариант из списка:
     internal static let textForSecondController = L10n.tr("Text", "textForSecondController")
   }
+  internal enum Title {
+    /// Add
+    internal static let add = L10n.tr("Title", "Add")
+    /// Add custom answer
+    internal static let addCustomAnswer = L10n.tr("Title", "Add custom answer")
+    /// Cancel
+    internal static let cancel = L10n.tr("Title", "Cancel")
+    /// Input your answer
+    internal static let inputYourAnswer = L10n.tr("Title", "Input your answer")
+  }
   internal enum URLstring {
     /// https://8ball.delegator.com/magic/JSON/question
     internal static let answerURL = L10n.tr("URLstring", "answerURL")

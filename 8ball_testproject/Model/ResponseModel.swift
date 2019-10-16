@@ -27,11 +27,11 @@ class ResponseModel {
             let responseAnswer = response?.toPresentableAnswer()
 
             if error != nil {
-                let answer = self.hardCodedAnswerModel.getSaveAnswer()
+                let answer = self.hardCodedAnswerModel.getSavedAnswer()
                 let responseAnswer = answer.toPresentableAnswer()
                 completion(responseAnswer)
             } else {
-                self.storageAnswer.saveAnswer(answer: response!)
+                self.storageAnswer.saveAnswer(answer: response)
                 completion(responseAnswer)
             }
         }

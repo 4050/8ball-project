@@ -16,7 +16,7 @@ class HardCodedAnswerModel {
         self.storageAnswer = storageAnswer
     }
 
-    func getSaveAnswer() -> Answer {
+    func getSavedAnswer() -> Answer {
         let storage = storageAnswer.getMotivationAnswers()
         let number = Int.random(in: 0 ..< storage.count)
         let answer = storage[number]

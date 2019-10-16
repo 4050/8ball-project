@@ -11,12 +11,13 @@ import CoreData
 
 protocol PersistenceStore {
     func getMotivationAnswers() -> [Answer]
-    func saveAnswer(answer: Answer)
+    func saveAnswer(answer: Answer?)
 }
+
 class StorageAnswerService: PersistenceStore {
 
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "StorageAnswers")
+        let container = NSPersistentContainer(name: "AnswerWarehouse")
         container.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
@@ -26,7 +27,8 @@ class StorageAnswerService: PersistenceStore {
     }()
 
     lazy var context = persistentContainer.viewContext
-    lazy var  backgroundMOC = persistentContainer.newBackgroundContext()
+    lazy var backgroundMOC = persistentContainer.newBackgroundContext()
+
     // MARK: - Core Data Saving support
     func saveContex() {
         if context.hasChanges {
@@ -44,25 +46,27 @@ class StorageAnswerService: PersistenceStore {
         let sort = NSSortDescriptor(key: #keyPath(ManageAnswer.date), ascending: false)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ManageAnswer")
         fetchRequest.sortDescriptors = [sort]
-
         do {
-            let fetchedObjects = try context.fetch(fetchRequest) as? [ManageAnswer]
-            let answers = fetchedObjects?.map{$0.toAnswer()}
-            return answers!
+            guard let fetchedObjects =
+                try context.fetch(fetchRequest) as? [ManageAnswer] else { return [Answer]() }
+            let answers = fetchedObjects.map { $0.toAnswer() }
+            return answers
         } catch {
             print(error)
             return [Answer]()
         }
+
     }
 
-    func saveAnswer(answer: Answer) {
-        let backgroundMOC = persistentContainer.newBackgroundContext()
-        guard let entity = NSEntityDescription.entity(forEntityName: "Answers", in: context) else { return }
+    func saveAnswer(answer: Answer?) {
+        guard let entity =
+            NSEntityDescription.entity(forEntityName: "ManageAnswer", in: context) else { return }
         guard let taskObject =
-            NSManagedObject(entity: entity, insertInto: backgroundMOC) as? ManageAnswer else { return }
+            NSManagedObject(entity: entity, insertInto: backgroundMOC) as? ManageAnswer else {
+                return }
         let date = NSDate()
         backgroundMOC.performAndWait {
-            taskObject.answer = answer.answer
+            taskObject.answer = answer?.answer
             taskObject.date = date
             do {
                 try backgroundMOC.save()
