@@ -25,16 +25,17 @@ class HardCodedAnswersTableViewController: UIViewController, UITabBarDelegate {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func loadView() {
-        super.loadView()
+    override func viewDidLoad() {
+        super.viewDidLoad()
         tableView.dataSource = self
         view.backgroundColor = .white
         safeArea = view.layoutMarginsGuide
-        setupTableData()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         setupTableView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         defaultAnswers = hardCodedAnswerViewModel.getMotivationAnswers()
         tableView.reloadData()
     }
@@ -49,9 +50,20 @@ class HardCodedAnswersTableViewController: UIViewController, UITabBarDelegate {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
 
-    private func setupTableData() {
-        defaultAnswers = hardCodedAnswerViewModel.getMotivationAnswers()
-        tableView.reloadData()
+    @objc
+    func addTapped() {
+        let alert = UIAlertController(title: "Add custom answer ", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        alert.addTextField(configurationHandler: { textField in
+            textField.placeholder = "Input your answer"
+        })
+        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
+            let name = alert.textFields?.first?.text
+            self.hardCodedAnswerViewModel.saveCustomAnswer(answer: PresentableAnswer(answer: name))
+            self.viewWillAppear(true)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -67,5 +79,4 @@ extension HardCodedAnswersTableViewController: UITableViewDataSource {
         cell.textLabel?.text = answer.answer
         return cell
     }
-
 }

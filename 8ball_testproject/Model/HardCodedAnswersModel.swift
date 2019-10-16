@@ -28,4 +28,8 @@ class HardCodedAnswerModel {
         let presentableAnswers = answers.map { $0.toPresentableAnswer() }
         return presentableAnswers
     }
+
+    func saveCustomAnswer(answer: Answer) {
+        storageAnswer.saveAnswer(answer: answer)
+    }
 }

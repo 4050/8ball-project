@@ -19,7 +19,11 @@ class HardCodedAnswersViewModel {
 
     func getMotivationAnswers() -> [PresentableAnswer] {
         let answers = hardCodedAnswersModel.getMotivationAnswers()
-        print("viewModel\(answers)")
         return answers
+    }
+
+    func saveCustomAnswer(answer: PresentableAnswer) {
+        let answer = answer.toAnswer()
+        hardCodedAnswersModel.saveCustomAnswer(answer: answer)
     }
 }

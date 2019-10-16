@@ -16,7 +16,6 @@ class TabViewController: UITabBarController, UITabBarControllerDelegate {
     }
 
     private func setupTabBar() {
-        delegate = self
         let storageAnswer = StorageAnswerService()
         let networkService = NetworkService()
         let networkDataFetcher = NetworkDataFetcher(networkService: networkService)
@@ -40,21 +39,6 @@ class TabViewController: UITabBarController, UITabBarControllerDelegate {
 
         viewControllers = tabViewControllers.map {
             UINavigationController(rootViewController: $0)
-        }
-    }
-
-    func tabBarController(_ tabBarController: UITabBarController,
-                          didSelect viewController: UIViewController) {
-        let storageAnswer = StorageAnswerService()
-        let hardCodedAnswerModel =
-            HardCodedAnswerModel(storageAnswer: storageAnswer)
-        let hardCodedAnswerViewModel =
-            HardCodedAnswersViewModel(hardCodedAnswersModel: hardCodedAnswerModel)
-        let secondVC =
-            HardCodedAnswersTableViewController(hardCodedAnswerViewModel: hardCodedAnswerViewModel)
-
-        if tabBarController.selectedIndex == 1 {
-            secondVC.viewWillAppear(true)
         }
     }
 }

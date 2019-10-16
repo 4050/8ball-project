@@ -32,7 +32,6 @@ class StorageAnswerService: PersistenceStore {
         if context.hasChanges {
             do {
                 try context.save()
-                print("Saved")
             } catch {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
@@ -42,12 +41,14 @@ class StorageAnswerService: PersistenceStore {
 
     func getMotivationAnswers() -> [Answer] {
         context.automaticallyMergesChangesFromParent = true
-        let sort = NSSortDescriptor(key: #keyPath(Answers.date), ascending: false)
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Answers")
+        let sort = NSSortDescriptor(key: #keyPath(ManageAnswer.date), ascending: false)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ManageAnswer")
         fetchRequest.sortDescriptors = [sort]
+
         do {
-            let fetchedObjects = try context.fetch(fetchRequest) as? [Answers]
-            return (fetchedObjects?.map {$0.toAnswer()})!
+            let fetchedObjects = try context.fetch(fetchRequest) as? [ManageAnswer]
+            let answers = fetchedObjects?.map{$0.toAnswer()}
+            return answers!
         } catch {
             print(error)
             return [Answer]()
@@ -56,13 +57,18 @@ class StorageAnswerService: PersistenceStore {
 
     func saveAnswer(answer: Answer) {
         let backgroundMOC = persistentContainer.newBackgroundContext()
-        let entity = NSEntityDescription.entity(forEntityName: "Answers", in: context)
-        let taskObject = NSManagedObject(entity: entity!, insertInto: backgroundMOC) as! Answers
+        guard let entity = NSEntityDescription.entity(forEntityName: "Answers", in: context) else { return }
+        guard let taskObject =
+            NSManagedObject(entity: entity, insertInto: backgroundMOC) as? ManageAnswer else { return }
         let date = NSDate()
         backgroundMOC.performAndWait {
             taskObject.answer = answer.answer
             taskObject.date = date
-            try! backgroundMOC.save()
+            do {
+                try backgroundMOC.save()
+            } catch {
+                print(error)
+            }
         }
     }
 }
