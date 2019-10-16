@@ -15,7 +15,7 @@ protocol PersistenceStore {
 }
 
 class StorageAnswerService: PersistenceStore {
-    
+
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "AnswerWarehouse")
         container.loadPersistentStores(completionHandler: { (_, error) in
@@ -25,10 +25,10 @@ class StorageAnswerService: PersistenceStore {
         })
         return container
     }()
-    
+
     lazy var context = persistentContainer.viewContext
     lazy var backgroundMOC = persistentContainer.newBackgroundContext()
-    
+
     // MARK: - Core Data Saving support
     func saveContex() {
         if context.hasChanges {
@@ -40,7 +40,7 @@ class StorageAnswerService: PersistenceStore {
             }
         }
     }
-    
+
     func getMotivationAnswers() -> [Answer] {
         context.automaticallyMergesChangesFromParent = true
         let sort = NSSortDescriptor(key: #keyPath(ManageAnswer.date), ascending: false)
@@ -55,9 +55,9 @@ class StorageAnswerService: PersistenceStore {
             print(error)
             return [Answer]()
         }
-        
+
     }
-    
+
     func saveAnswer(answer: Answer?) {
         guard let entity =
             NSEntityDescription.entity(forEntityName: "ManageAnswer", in: context) else { return }
