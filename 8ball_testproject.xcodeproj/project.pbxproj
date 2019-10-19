@@ -19,8 +19,6 @@
 		85254BF2233FE69600ADD47B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85254BF1233FE69600ADD47B /* NetworkService.swift */; };
 		852627932344C57C008E49E9 /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852627922344C57C008E49E9 /* NetworkDataFetcher.swift */; };
 		852F09952357854900954C9D /* AnswerWarehouse.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 852F09932357854900954C9D /* AnswerWarehouse.xcdatamodeld */; };
-		852F0998235785AE00954C9D /* ManageAnswer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F0996235785AE00954C9D /* ManageAnswer+CoreDataClass.swift */; };
-		852F0999235785AE00954C9D /* ManageAnswer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F0997235785AE00954C9D /* ManageAnswer+CoreDataProperties.swift */; };
 		852F099B235787D800954C9D /* Title.strings in Resources */ = {isa = PBXBuildFile; fileRef = 852F099A235787D800954C9D /* Title.strings */; };
 		853C2EB32348A0A10036AF7F /* PresentableAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853C2EB22348A0A10036AF7F /* PresentableAnswer.swift */; };
 		853E5B772354C58B001EB0D9 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853E5B762354C58B001EB0D9 /* TabViewController.swift */; };
@@ -34,6 +32,8 @@
 		8580DC8D2351CD8E0021325D /* StorageAnswerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8580DC8C2351CD8E0021325D /* StorageAnswerService.swift */; };
 		8580DC9F2352178C0021325D /* HardCodedAnswersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8580DC9E2352178C0021325D /* HardCodedAnswersTableViewController.swift */; };
 		8580DCA1235227A90021325D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8580DCA0235227A90021325D /* CoreData.framework */; };
+		858A64A1235B40E800FD979E /* ManagedAnswer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A649F235B40E800FD979E /* ManagedAnswer+CoreDataClass.swift */; };
+		858A64A2235B40E800FD979E /* ManagedAnswer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A64A0235B40E800FD979E /* ManagedAnswer+CoreDataProperties.swift */; };
 		85BAB1912309D84900D3C5CF /* HardCodedAnswersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BAB1902309D84900D3C5CF /* HardCodedAnswersModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,8 +51,6 @@
 		85254BF1233FE69600ADD47B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		852627922344C57C008E49E9 /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
 		852F09942357854900954C9D /* AnswerWarehouse.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AnswerWarehouse.xcdatamodel; sourceTree = "<group>"; };
-		852F0996235785AE00954C9D /* ManageAnswer+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManageAnswer+CoreDataClass.swift"; sourceTree = "<group>"; };
-		852F0997235785AE00954C9D /* ManageAnswer+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManageAnswer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		852F099A235787D800954C9D /* Title.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Title.strings; sourceTree = "<group>"; };
 		853C2EB22348A0A10036AF7F /* PresentableAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentableAnswer.swift; sourceTree = "<group>"; };
 		853E5B762354C58B001EB0D9 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +66,8 @@
 		8580DC8C2351CD8E0021325D /* StorageAnswerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageAnswerService.swift; sourceTree = "<group>"; };
 		8580DC9E2352178C0021325D /* HardCodedAnswersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardCodedAnswersTableViewController.swift; sourceTree = "<group>"; };
 		8580DCA0235227A90021325D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		858A649F235B40E800FD979E /* ManagedAnswer+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedAnswer+CoreDataClass.swift"; sourceTree = "<group>"; };
+		858A64A0235B40E800FD979E /* ManagedAnswer+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedAnswer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		85BAB1902309D84900D3C5CF /* HardCodedAnswersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardCodedAnswersModel.swift; sourceTree = "<group>"; };
 		9763CEA0DD56BAFA460148CF /* Pods-8ball_testproject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-8ball_testproject.debug.xcconfig"; path = "Target Support Files/Pods-8ball_testproject/Pods-8ball_testproject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,8 +163,8 @@
 		8580DC8E2351D1940021325D /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				852F0997235785AE00954C9D /* ManageAnswer+CoreDataProperties.swift */,
-				852F0996235785AE00954C9D /* ManageAnswer+CoreDataClass.swift */,
+				858A64A0235B40E800FD979E /* ManagedAnswer+CoreDataProperties.swift */,
+				858A649F235B40E800FD979E /* ManagedAnswer+CoreDataClass.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -393,9 +393,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				85254BF2233FE69600ADD47B /* NetworkService.swift in Sources */,
+				858A64A1235B40E800FD979E /* ManagedAnswer+CoreDataClass.swift in Sources */,
 				851C543C2345DAFD00A99261 /* AnswerModel.swift in Sources */,
 				852F09952357854900954C9D /* AnswerWarehouse.xcdatamodeld in Sources */,
-				852F0999235785AE00954C9D /* ManageAnswer+CoreDataProperties.swift in Sources */,
 				851C543A2345C70C00A99261 /* DataAnswer.swift in Sources */,
 				853C2EB32348A0A10036AF7F /* PresentableAnswer.swift in Sources */,
 				851F443D233C101C000776CE /* Strings.swift in Sources */,
@@ -407,10 +407,10 @@
 				8580DC8D2351CD8E0021325D /* StorageAnswerService.swift in Sources */,
 				855EB5A222FC0A99002BEB82 /* ResponseModel.swift in Sources */,
 				8580DC9F2352178C0021325D /* HardCodedAnswersTableViewController.swift in Sources */,
-				852F0998235785AE00954C9D /* ManageAnswer+CoreDataClass.swift in Sources */,
 				854F8FEB2340D33F0000D5AC /* ResponseViewModel.swift in Sources */,
 				85BAB1912309D84900D3C5CF /* HardCodedAnswersModel.swift in Sources */,
 				855EB58C22FBE3F1002BEB82 /* AppDelegate.swift in Sources */,
+				858A64A2235B40E800FD979E /* ManagedAnswer+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

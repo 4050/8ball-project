@@ -29,26 +29,14 @@ class StorageAnswerService: PersistenceStore {
     lazy var context = persistentContainer.viewContext
     lazy var backgroundMOC = persistentContainer.newBackgroundContext()
 
-    // MARK: - Core Data Saving support
-    func saveContex() {
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
-    }
-
     func getMotivationAnswers() -> [Answer] {
         context.automaticallyMergesChangesFromParent = true
-        let sort = NSSortDescriptor(key: #keyPath(ManageAnswer.date), ascending: false)
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ManageAnswer")
+        let sort = NSSortDescriptor(key: #keyPath(ManagedAnswer.date), ascending: false)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ManagedAnswer")
         fetchRequest.sortDescriptors = [sort]
         do {
             guard let fetchedObjects =
-                try context.fetch(fetchRequest) as? [ManageAnswer] else { return [Answer]() }
+                try context.fetch(fetchRequest) as? [ManagedAnswer] else { return [Answer]() }
             let answers = fetchedObjects.map { $0.toAnswer() }
             return answers
         } catch {
@@ -60,9 +48,9 @@ class StorageAnswerService: PersistenceStore {
 
     func saveAnswer(answer: Answer?) {
         guard let entity =
-            NSEntityDescription.entity(forEntityName: "ManageAnswer", in: context) else { return }
+            NSEntityDescription.entity(forEntityName: "ManagedAnswer", in: context) else { return }
         guard let taskObject =
-            NSManagedObject(entity: entity, insertInto: backgroundMOC) as? ManageAnswer else {
+            NSManagedObject(entity: entity, insertInto: backgroundMOC) as? ManagedAnswer else {
                 return }
         let date = NSDate()
         backgroundMOC.performAndWait {
