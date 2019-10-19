@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,22 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
         -> Bool {
 
-            let persistentService = PersistentServise()
-            let networkService = NetworkService()
-            let networkDataFetcher = NetworkDataFetcher(networkService: networkService)
-            let hardCodedAnswerModel =
-                HardCodedAnswerModel(persistentService: persistentService)
-            let responseModel =
-                ResponseModel(networkDataFetch: networkDataFetcher,
-                              hardCodedAnswerModel: hardCodedAnswerModel)
-            let responseViewModel =
-                ResponseViewModel(responseModel: responseModel)
-            let homeViewController = ResponseViewController(responseViewModel: responseViewModel)
-            let navigationController: UINavigationController =
-                UINavigationController(rootViewController: homeViewController)
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            self.window?.rootViewController = navigationController
-            self.window?.makeKeyAndVisible()
+            window = UIWindow(frame: UIScreen.main.bounds)
+            window?.rootViewController = TabViewController()
+            window?.makeKeyAndVisible()
+
             return true
     }
 }

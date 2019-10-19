@@ -29,7 +29,6 @@ class NetworkDataFetcher: DataFetcher {
     }
 
     func dataAnswerFetch(urlString: String, completion: @escaping (Answer?, Error?) -> Void) {
-
         networkService.request(urlString: urlString) { (data, error) in
             if let error = error {
                 print(L10n.Error.errorReceivedRequestingData, error)

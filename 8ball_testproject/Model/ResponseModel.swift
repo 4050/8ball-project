@@ -12,10 +12,14 @@ class ResponseModel {
 
     private let networkDataFetch: DataFetcher
     private let hardCodedAnswerModel: HardCodedAnswerModel
+    private let storageAnswer: PersistenceStore
 
-    init(networkDataFetch: NetworkDataFetcher, hardCodedAnswerModel: HardCodedAnswerModel) {
+    init(networkDataFetch: NetworkDataFetcher,
+         hardCodedAnswerModel: HardCodedAnswerModel,
+         storageAnswer: StorageAnswerService) {
         self.networkDataFetch = networkDataFetch
         self.hardCodedAnswerModel = hardCodedAnswerModel
+        self.storageAnswer = storageAnswer
     }
 
     func getAnswer(completion: @escaping (PresentableAnswer?) -> Void) {
@@ -23,10 +27,11 @@ class ResponseModel {
             let responseAnswer = response?.toPresentableAnswer()
 
             if error != nil {
-                let answer = self.hardCodedAnswerModel.getSaveAnswer()
+                let answer = self.hardCodedAnswerModel.getSavedAnswer()
                 let responseAnswer = answer.toPresentableAnswer()
                 completion(responseAnswer)
             } else {
+                self.storageAnswer.saveAnswer(answer: response)
                 completion(responseAnswer)
             }
         }

@@ -11,3 +11,9 @@ import Foundation
 struct PresentableAnswer {
     var answer: String?
 }
+
+extension PresentableAnswer {
+    func toAnswer() -> Answer {
+        return Answer(answer: answer)
+    }
+}

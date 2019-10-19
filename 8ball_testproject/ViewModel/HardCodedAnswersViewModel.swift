@@ -22,7 +22,8 @@ class HardCodedAnswersViewModel {
         return answers
     }
 
-    func saveIndex(index: Int) {
-        hardCodedAnswersModel.saveIndex(index: index)
+    func saveCustomAnswer(answer: PresentableAnswer) {
+        let answer = answer.toAnswer()
+        hardCodedAnswersModel.saveCustomAnswer(answer: answer)
     }
 }
