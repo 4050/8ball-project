@@ -96,27 +96,12 @@ class ResponseViewController: UIViewController {
                 answerPresent = answer
             }
 
-            UIView.animate(
-                withDuration: 1.5,
-                delay: 0.5,
-                animations: {
-                    self.triangleImage.transform =
-                        CGAffineTransform( rotationAngle: CGFloat.pi).scaledBy(x: 0.001, y: 0.001)
-                    self.answerLabel.transform =
-                        CGAffineTransform(rotationAngle: CGFloat.pi).scaledBy(x: 0.001, y: 0.001)
-            }, completion: { _ in
-                DispatchQueue.main.async {
-                    self.answerLabel.text = answerPresent?.answer
-                }
-                UIView.animate(
-                    withDuration: 1.5,
-                    delay: 1.5,
-                    animations: {
-                        self.triangleImage.transform = .identity
-                        self.answerLabel.transform = .identity
-                },
-                    completion: nil )
-            })
+            // Start Animation
+            responseViewModel.animateTriangleAndText(triangleImage: triangleImage, answerLabel: answerLabel)
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                self.answerLabel.text = answerPresent?.answer
+            }
         }
     }
 
@@ -143,20 +128,8 @@ class ResponseViewController: UIViewController {
             equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 10).isActive = true
 
         triangleImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 13).isActive = true
-        //triangleImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 25).isActive = true
+        triangleImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 25).isActive = true
         triangleImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
         triangleImage.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
-    }
-}
-
-extension ResponseViewController {
-    func textAnimate(answer: PresentableAnswer) {
-        UIView.animate(withDuration: 1, delay: 0.5, animations: {
-            self.answerLabel.alpha = 0.0
-        }, completion: { _ in
-            UIView.animate(withDuration: 1, delay: 0.5, animations: {
-                self.answerLabel.alpha = 1.0
-            }, completion: nil)
-        })
     }
 }
