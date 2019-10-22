@@ -96,7 +96,7 @@ class ResponseViewController: UIViewController {
             self.shouldAnimate = true
             self.responseViewModel.getData { answer in
                 self.shouldAnimate = false
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                         self.answerLabel.text = answer?.answer
                 }
             }
@@ -147,7 +147,7 @@ extension ResponseViewController {
             completion: { _ in
                 UIView.animate(
                     withDuration: 1.5,
-                    delay: 0,
+                    delay: 0.5,
                     animations: {
                         triangleImage.transform = .identity
                         answerLabel.transform = .identity
