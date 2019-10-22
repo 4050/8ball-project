@@ -138,6 +138,8 @@ extension ResponseViewController {
     func animateTriangleAndText(triangleImage: UIImageView, answerLabel: UILabel) {
         UIView.animate(
             withDuration: 1,
+            delay: 0,
+            options: .curveEaseInOut,
             animations: {
                 triangleImage.transform =
                     CGAffineTransform( rotationAngle: CGFloat.pi).scaledBy(x: 0.01, y: 0.01)
@@ -148,6 +150,7 @@ extension ResponseViewController {
                 UIView.animate(
                     withDuration: 1.5,
                     delay: 0.5,
+                    options: .curveEaseInOut,
                     animations: {
                         triangleImage.transform = .identity
                         answerLabel.transform = .identity
