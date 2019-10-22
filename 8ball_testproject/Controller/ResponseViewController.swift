@@ -11,6 +11,7 @@ import UIKit
 class ResponseViewController: UIViewController {
 
     private var responseViewModel: ResponseViewModel
+    private var shouldAnimate: Bool = true
 
     private let answerLabel: UILabel = {
         let label = UILabel()
@@ -89,19 +90,18 @@ class ResponseViewController: UIViewController {
 
     // MARK: - Method Shake Gesture
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        var answerPresent: PresentableAnswer?
-
         if motion == .motionShake {
+            // Я не совсем уверен в необходимости этой строки
+            // Но если я пытаюсь запустить анимацию повторно, то анимация не происходит
+            self.shouldAnimate = true
             self.responseViewModel.getData { answer in
-                answerPresent = answer
+                self.shouldAnimate = false
+                    DispatchQueue.main.async {
+                        self.answerLabel.text = answer?.answer
+                }
             }
-
             // Start Animation
-            responseViewModel.animateTriangleAndText(triangleImage: triangleImage, answerLabel: answerLabel)
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                self.answerLabel.text = answerPresent?.answer
-            }
+            animateTriangleAndText(triangleImage: triangleImage, answerLabel: answerLabel)
         }
     }
 
@@ -131,5 +131,33 @@ class ResponseViewController: UIViewController {
         triangleImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 25).isActive = true
         triangleImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
         triangleImage.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
+    }
+}
+
+extension ResponseViewController {
+    func animateTriangleAndText(triangleImage: UIImageView, answerLabel: UILabel) {
+        UIView.animate(
+            withDuration: 1,
+            animations: {
+                triangleImage.transform =
+                    CGAffineTransform( rotationAngle: CGFloat.pi).scaledBy(x: 0.01, y: 0.01)
+                answerLabel.transform =
+                    CGAffineTransform(rotationAngle: CGFloat.pi).scaledBy(x: 0.001, y: 0.001)
+        },
+            completion: { _ in
+                UIView.animate(
+                    withDuration: 1.5,
+                    delay: 0,
+                    animations: {
+                        triangleImage.transform = .identity
+                        answerLabel.transform = .identity
+                },
+                    completion: { _ in
+                        if self.shouldAnimate {
+                            self.animateTriangleAndText(triangleImage: triangleImage,
+                                                        answerLabel: answerLabel)
+                        }
+                })
+        })
     }
 }
