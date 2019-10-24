@@ -11,15 +11,19 @@ import UIKit
 class ResponseViewController: UIViewController {
 
     private var responseViewModel: ResponseViewModel
+    private var shouldAnimate: Bool = true
 
     private let answerLabel: UILabel = {
         let label = UILabel()
+        let maxSize = CGSize(width: 150, height: 300)
+        let size = label.sizeThatFits(maxSize)
         label.text = L10n.Text.shakeMe
         label.textColor = .white
         label.textAlignment = .center
         label.numberOfLines = 3
         label.font = UIFont.boldSystemFont(ofSize: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.frame = CGRect(origin: CGPoint(x: 100, y: 100), size: size)
         return label
     }()
 
@@ -47,9 +51,18 @@ class ResponseViewController: UIViewController {
 
     private let ballImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = Asset.magicEightBall.image
+        imageView.image = Asset._8ballimage.image
         imageView.contentMode = .scaleAspectFit
         imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 400)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+
+    private let triangleImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = Asset.triangle.image
+        imageView.contentMode = .scaleAspectFit
+        imageView.frame = CGRect(x: 0, y: 0, width: 50, height: 100)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -68,19 +81,25 @@ class ResponseViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(ballImage)
+        view.addSubview(triangleImage)
         view.addSubview(magicLabel)
         view.addSubview(askLabel)
         view.addSubview(answerLabel)
         setupLayout()
     }
+
     // MARK: - Method Shake Gesture
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            responseViewModel.getData { answer in
-                DispatchQueue.main.async {
-                    self.answerLabel.text = answer?.answer
+            self.shouldAnimate = true
+            self.responseViewModel.getData { answer in
+                self.shouldAnimate = false
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                        self.answerLabel.text = answer?.answer
                 }
             }
+            // Start Animation
+            animateTriangleAndText(triangleImage: triangleImage, answerLabel: answerLabel)
         }
     }
 
@@ -94,7 +113,7 @@ class ResponseViewController: UIViewController {
         askLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
         askLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
 
-        answerLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 25).isActive = true
+        answerLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
         answerLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 25).isActive = true
         answerLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
         answerLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
@@ -106,6 +125,40 @@ class ResponseViewController: UIViewController {
         ballImage.bottomAnchor.constraint(
             equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 10).isActive = true
 
+        triangleImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 13).isActive = true
+        triangleImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 25).isActive = true
+        triangleImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+        triangleImage.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
     }
+}
 
+extension ResponseViewController {
+    func animateTriangleAndText(triangleImage: UIImageView, answerLabel: UILabel) {
+        UIView.animate(
+            withDuration: 1,
+            delay: 0,
+            options: .curveEaseInOut,
+            animations: {
+                triangleImage.transform =
+                    CGAffineTransform( rotationAngle: CGFloat.pi).scaledBy(x: 0.01, y: 0.01)
+                answerLabel.transform =
+                    CGAffineTransform(rotationAngle: CGFloat.pi).scaledBy(x: 0.001, y: 0.001)
+        },
+            completion: { _ in
+                UIView.animate(
+                    withDuration: 1.5,
+                    delay: 0.5,
+                    options: .curveEaseInOut,
+                    animations: {
+                        triangleImage.transform = .identity
+                        answerLabel.transform = .identity
+                },
+                    completion: { _ in
+                        if self.shouldAnimate {
+                            self.animateTriangleAndText(triangleImage: triangleImage,
+                                                        answerLabel: answerLabel)
+                        }
+                })
+        })
+    }
 }
