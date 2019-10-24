@@ -91,8 +91,6 @@ class ResponseViewController: UIViewController {
     // MARK: - Method Shake Gesture
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            // Я не совсем уверен в необходимости этой строки
-            // Но если я пытаюсь запустить анимацию повторно, то анимация не происходит
             self.shouldAnimate = true
             self.responseViewModel.getData { answer in
                 self.shouldAnimate = false

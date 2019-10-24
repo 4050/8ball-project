@@ -18,7 +18,9 @@ class ResponseViewModel {
 
     func getData(completion: @escaping (PresentableAnswer?) -> Void) {
         responseModel.getAnswer { (answer) in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                 completion(answer)
+            }
         }
     }
 }
