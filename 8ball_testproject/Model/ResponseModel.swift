@@ -7,12 +7,16 @@
 //
 
 import Foundation
+import RxSwift
 
 class ResponseModel {
 
     private let networkDataFetch: DataFetcher
     private let hardCodedAnswerModel: HardCodedAnswerModel
     private let storageAnswer: PersistenceStore
+
+    public let answer = BehaviorSubject<Answer?>(value: nil)
+    public let loading = PublishSubject<Bool>()
 
     init(networkDataFetch: NetworkDataFetcher,
          hardCodedAnswerModel: HardCodedAnswerModel,
@@ -23,9 +27,11 @@ class ResponseModel {
     }
 
     func getAnswer(completion: @escaping (PresentableAnswer?) -> Void) {
+        self.loading.onNext(true)
         networkDataFetch.dataAnswerFetch(urlString: L10n.URLstring.answerURL) { (response, error) in
+            self.loading.onNext(false)
+            print("0")
             let responseAnswer = response?.toPresentableAnswer()
-
             if error != nil {
                 let answer = self.hardCodedAnswerModel.getSavedAnswer()
                 let responseAnswer = answer.toPresentableAnswer()
@@ -35,5 +41,21 @@ class ResponseModel {
                 completion(responseAnswer)
             }
         }
+    }
+
+    func requestData() {
+        self.loading.onNext(true)
+        networkDataFetch.dataAnswerFetch(urlString: L10n.URLstring.answerURL) { (response, error) in
+            self.loading.onNext(false)
+            if error != nil {
+                let answer = self.hardCodedAnswerModel.getSavedAnswer()
+                let response = answer
+                self.answer.onNext(response)
+            } else {
+                self.storageAnswer.saveAnswer(answer: response)
+                self.answer.onNext(response)
+            }
+        }
+
     }
 }

@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class ResponseViewController: UIViewController {
 
     private var responseViewModel: ResponseViewModel
     private var shouldAnimate: Bool = true
+    private let disposeBag = DisposeBag()
 
     private let answerLabel: UILabel = {
         let label = UILabel()
@@ -86,21 +89,23 @@ class ResponseViewController: UIViewController {
         view.addSubview(askLabel)
         view.addSubview(answerLabel)
         setupLayout()
+        setupBindings()
     }
 
     // MARK: - Method Shake Gesture
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            self.shouldAnimate = true
-            self.responseViewModel.getData { answer in
-                self.shouldAnimate = false
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                        self.answerLabel.text = answer?.answer
-                }
-            }
+            self.responseViewModel.shakeAction.onNext(())
             // Start Animation
             animateTriangleAndText(triangleImage: triangleImage, answerLabel: answerLabel)
         }
+    }
+
+    private func setupBindings() {
+        responseViewModel.answerStream.bind(to: answerLabel.rx.text).disposed(by: disposeBag)
+        responseViewModel.loading.subscribe(onNext: { [weak self] state in
+            self?.shouldAnimate = state
+        }).disposed(by: disposeBag)
     }
 
     private func setupLayout() {

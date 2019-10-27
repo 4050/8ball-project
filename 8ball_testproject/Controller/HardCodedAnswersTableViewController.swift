@@ -8,13 +8,15 @@
 
 import Foundation
 import UIKit
+import RxCocoa
+import RxSwift
 
 class HardCodedAnswersTableViewController: UIViewController, UITabBarDelegate {
 
     private let tableView = UITableView()
+    private let disposeBag = DisposeBag()
     private var safeArea: UILayoutGuide!
     private var alertTextFiled = UITextField()
-    private var defaultAnswers: [PresentableAnswer] = []
     private var hardCodedAnswerViewModel: HardCodedAnswersViewModel
 
     init(hardCodedAnswerViewModel: HardCodedAnswersViewModel) {
@@ -28,7 +30,9 @@ class HardCodedAnswersTableViewController: UIViewController, UITabBarDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
+        //tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        setupBindings()
         view.backgroundColor = .white
         safeArea = view.layoutMarginsGuide
         navigationItem.rightBarButtonItem =
@@ -38,8 +42,18 @@ class HardCodedAnswersTableViewController: UIViewController, UITabBarDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        defaultAnswers = hardCodedAnswerViewModel.getMotivationAnswers()
-        tableView.reloadData()
+         self.hardCodedAnswerViewModel.tapAction.onNext(())
+        //defaultAnswers = hardCodedAnswerViewModel.getMotivationAnswers()
+        //tableView.reloadData()
+    }
+
+    private func setupBindings() {
+        hardCodedAnswerViewModel.answerStream.bind(
+        to: tableView.rx.items(cellIdentifier: "cell")) { rowItem, answer, cell in
+            cell.textLabel?.text = answer
+            cell.textLabel?.numberOfLines = 0
+            cell.selectionStyle = .none
+            }.disposed(by: disposeBag)
     }
 
     private func setupTableView() {
@@ -66,11 +80,11 @@ class HardCodedAnswersTableViewController: UIViewController, UITabBarDelegate {
         alert.addAction(UIAlertAction(title: L10n.Title.add, style: .default, handler: {_ in
             if let text = self.alertTextFiled.text, !text.isEmpty {
                 let answer = alert.textFields?.first?.text
-                self.hardCodedAnswerViewModel.saveCustomAnswer(answer: PresentableAnswer(answer: answer))
-                self.defaultAnswers = self.hardCodedAnswerViewModel.getMotivationAnswers()
-                self.tableView.reloadData()
-                // Решил пока сделать так, но я помню про NSFRC и хочу в будущем работать через него.
-                // Очень надеюсь, что так делать не запрещено
+                //self.hardCodedAnswerViewModel.customAnswer.onNext(PresentableAnswer(answer: answer))
+                //self.hardCodedAnswerViewModel.saveCustomAnswer(answer: PresentableAnswer(answer: answer))
+                //self.hardCodedAnswerViewModel.tapAction.onNext(())
+                //self.defaultAnswers = self.hardCodedAnswerViewModel.getMotivationAnswers()
+                //self.tableView.reloadData()
             } else {
                 return
             }
@@ -79,16 +93,16 @@ class HardCodedAnswersTableViewController: UIViewController, UITabBarDelegate {
     }
 }
 
-extension HardCodedAnswersTableViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return defaultAnswers.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self),
-                                                 for: indexPath)
-        let answer = defaultAnswers[indexPath.row]
-        cell.textLabel?.text = answer.answer
-        return cell
-    }
-}
+//extension HardCodedAnswersTableViewController: UITableViewDataSource {
+   // func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+   //     return defaultAnswers.count
+   // }
+//
+   // func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+   //     let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self),
+   //                                              for: indexPath)
+   //     let answer = defaultAnswers[indexPath.row]
+   //     cell.textLabel?.text = answer.answer
+   //     return cell
+   // }
+//}
