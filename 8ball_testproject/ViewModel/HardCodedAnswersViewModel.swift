@@ -17,7 +17,6 @@ class HardCodedAnswersViewModel {
 
     var answerStream: Observable<[String?]> {
         return hardCodedAnswersModel.answer.asObserver()
-            .filter { $0 != nil }
             .map { answer -> [String?] in
                 return answer.map({$0?.toPresentableAnswer().answer})
         }
@@ -29,7 +28,7 @@ class HardCodedAnswersViewModel {
     }
 
     private func setupBindigns() {
-        tapAction.subscribe(onNext: { [weak self] in
+        tapAction.subscribe(onNext: {[weak self] in
             self?.requestData()
         })
     }

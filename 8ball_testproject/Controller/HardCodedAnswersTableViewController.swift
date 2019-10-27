@@ -80,9 +80,9 @@ class HardCodedAnswersTableViewController: UIViewController, UITabBarDelegate {
         alert.addAction(UIAlertAction(title: L10n.Title.add, style: .default, handler: {_ in
             if let text = self.alertTextFiled.text, !text.isEmpty {
                 let answer = alert.textFields?.first?.text
-                //self.hardCodedAnswerViewModel.customAnswer.onNext(PresentableAnswer(answer: answer))
-                //self.hardCodedAnswerViewModel.saveCustomAnswer(answer: PresentableAnswer(answer: answer))
-                //self.hardCodedAnswerViewModel.tapAction.onNext(())
+                self.hardCodedAnswerViewModel.customAnswer.onNext(PresentableAnswer(answer: answer))
+                self.hardCodedAnswerViewModel.saveCustomAnswer(answer: PresentableAnswer(answer: answer))
+                self.hardCodedAnswerViewModel.tapAction.onNext(())
                 //self.defaultAnswers = self.hardCodedAnswerViewModel.getMotivationAnswers()
                 //self.tableView.reloadData()
             } else {
