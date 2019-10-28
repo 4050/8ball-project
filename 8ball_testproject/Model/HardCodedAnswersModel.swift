@@ -26,7 +26,7 @@ class HardCodedAnswerModel {
             .bind { [weak self ] answer in
                 guard let answer = answer else { return }
                 self?.storageAnswer.saveAnswer(answer: answer)
-        }.disposed(by: disposeBag)
+            }.disposed(by: disposeBag)
     }
 
     func getSavedAnswer() -> Answer {

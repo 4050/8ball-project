@@ -23,8 +23,8 @@ class ResponseViewModel {
             .filter { $0 != nil }
             .map { answer -> String? in
                 return answer?.toPresentableAnswer().answer
-            }
         }
+    }
 
     init(responseModel: ResponseModel) {
         self.responseModel = responseModel
@@ -32,15 +32,8 @@ class ResponseViewModel {
     }
 
     private func setupBindigns() {
-          // shakeAction.subscribe(onNext: { [weak self] in
-          //     self?.responseModel.shakeAction
-          //     }).disposed(by: disposeBag)
         shakeAction
             .bind(to: responseModel.shakeAction)
             .disposed(by: disposeBag)
     }
-
-   // private func requestData() {
-   //     responseModel.requestData()
-   // }
 }

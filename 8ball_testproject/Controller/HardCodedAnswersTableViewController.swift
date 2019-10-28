@@ -41,7 +41,7 @@ class HardCodedAnswersTableViewController: UIViewController, UITabBarDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-         self.hardCodedAnswerViewModel.tapAction.onNext(())
+        self.hardCodedAnswerViewModel.tapAction.onNext(())
     }
 
     private func setupBindings() {

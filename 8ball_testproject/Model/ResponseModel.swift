@@ -30,21 +30,22 @@ class ResponseModel {
     }
 
     private func setupBindigns() {
-        shakeAction.subscribe {[weak self] in
+        shakeAction.subscribe(onNext: {[weak self] in
             self?.requestData()
-        }.disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
     }
 
     func requestData() {
         self.loading.onNext(true)
         networkDataFetch.dataAnswerFetch(urlString: L10n.URLstring.answerURL) { (response, error) in
-        if error != nil {
-        let answer = self.hardCodedAnswerModel.getSavedAnswer()
-        let response = answer
-        self.answer.onNext(response)
-        } else {
-        self.storageAnswer.saveAnswer(answer: response)
-        self.answer.onNext(response)
+            self.loading.onNext(false)
+            if error != nil {
+                let answer = self.hardCodedAnswerModel.getSavedAnswer()
+                let response = answer
+                self.answer.onNext(response)
+            } else {
+                self.storageAnswer.saveAnswer(answer: response)
+                self.answer.onNext(response)
             }
         }
     }
