@@ -13,8 +13,8 @@ class ResponseViewModel {
 
     private let responseModel: ResponseModel!
     private let disposeBag = DisposeBag()
-    let shakeAction = PublishSubject<Void>()
-    var loading: Observable<Bool> {
+    public let shakeAction = PublishSubject<Void>()
+    public var loading: Observable<Bool> {
         return responseModel.loading.asObservable()
     }
 
@@ -32,12 +32,15 @@ class ResponseViewModel {
     }
 
     private func setupBindigns() {
-        shakeAction.subscribe(onNext: { [weak self] in
-            self?.requestData()
-            }).disposed(by: disposeBag)
+          // shakeAction.subscribe(onNext: { [weak self] in
+          //     self?.responseModel.shakeAction
+          //     }).disposed(by: disposeBag)
+        shakeAction
+            .bind(to: responseModel.shakeAction)
+            .disposed(by: disposeBag)
     }
 
-    private func requestData() {
-        responseModel.requestData()
-    }
+   // private func requestData() {
+   //     responseModel.requestData()
+   // }
 }

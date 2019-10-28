@@ -33,7 +33,7 @@ class HardCodedAnswersViewModel {
             self?.requestData()
         }).disposed(by: disposeBag)
 
-       savedCustomAnswer
+        savedCustomAnswer
             .map {$0?.toAnswer()}
             .bind(to: hardCodedAnswersModel.savedCustomAnswer)
             .disposed(by: disposeBag)
