@@ -15,6 +15,7 @@ class ResponseViewController: UIViewController {
     private var responseViewModel: ResponseViewModel
     private var shouldAnimate: Bool = true
     private let disposeBag = DisposeBag()
+    let shakeAction = PublishSubject<Void>()
 
     private let answerLabel: UILabel = {
         let label = UILabel()

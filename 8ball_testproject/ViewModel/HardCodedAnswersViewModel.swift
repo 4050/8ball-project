@@ -12,8 +12,9 @@ import RxSwift
 class HardCodedAnswersViewModel {
 
     private let hardCodedAnswersModel: HardCodedAnswerModel
+    private let disposeBag = DisposeBag()
     let tapAction = PublishSubject<Void>()
-    var customAnswer = PublishSubject<PresentableAnswer>()
+    var savedCustomAnswer = PublishSubject<PresentableAnswer?>()
 
     var answerStream: Observable<[String?]> {
         return hardCodedAnswersModel.answer.asObserver()
@@ -30,21 +31,15 @@ class HardCodedAnswersViewModel {
     private func setupBindigns() {
         tapAction.subscribe(onNext: {[weak self] in
             self?.requestData()
-        })
+        }).disposed(by: disposeBag)
+
+       savedCustomAnswer
+            .map {$0?.toAnswer()}
+            .bind(to: hardCodedAnswersModel.savedCustomAnswer)
+            .disposed(by: disposeBag)
     }
 
     private func requestData() {
         hardCodedAnswersModel.requestData()
-    }
-
-    func getMotivationAnswers() -> [PresentableAnswer] {
-        let answers = hardCodedAnswersModel.getMotivationAnswers()
-        return answers
-    }
-
-    func saveCustomAnswer() {
-         let answer = customAnswer.asObserver().map({$0.toAnswer().answer})
-        //let answers = answer.toAnswer()
-        //hardCodedAnswersModel.saveCustomAnswer(answer: answer)
     }
 }

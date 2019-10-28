@@ -17,6 +17,7 @@ class ResponseModel {
 
     public let answer = BehaviorSubject<Answer?>(value: nil)
     public let loading = PublishSubject<Bool>()
+    public let shakeAction = PublishSubject<Void>()
 
     init(networkDataFetch: NetworkDataFetcher,
          hardCodedAnswerModel: HardCodedAnswerModel,
@@ -24,24 +25,14 @@ class ResponseModel {
         self.networkDataFetch = networkDataFetch
         self.hardCodedAnswerModel = hardCodedAnswerModel
         self.storageAnswer = storageAnswer
+        //setupBindigns()
     }
 
-    func getAnswer(completion: @escaping (PresentableAnswer?) -> Void) {
-        self.loading.onNext(true)
-        networkDataFetch.dataAnswerFetch(urlString: L10n.URLstring.answerURL) { (response, error) in
-            self.loading.onNext(false)
-            print("0")
-            let responseAnswer = response?.toPresentableAnswer()
-            if error != nil {
-                let answer = self.hardCodedAnswerModel.getSavedAnswer()
-                let responseAnswer = answer.toPresentableAnswer()
-                completion(responseAnswer)
-            } else {
-                self.storageAnswer.saveAnswer(answer: response)
-                completion(responseAnswer)
-            }
-        }
-    }
+ //  private func setupBindigns() {
+ //      shakeAction.subscribe {
+ //          self.requestData()
+ //      }
+ //  }
 
     func requestData() {
         self.loading.onNext(true)

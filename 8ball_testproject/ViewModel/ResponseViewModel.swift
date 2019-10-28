@@ -12,10 +12,10 @@ import RxSwift
 class ResponseViewModel {
 
     private let responseModel: ResponseModel!
-
+    private let disposeBag = DisposeBag()
     let shakeAction = PublishSubject<Void>()
     var loading: Observable<Bool> {
-        return responseModel.loading.asObserver()
+        return responseModel.loading.asObservable()
     }
 
     var answerStream: Observable<String?> {
@@ -32,18 +32,12 @@ class ResponseViewModel {
     }
 
     private func setupBindigns() {
-            shakeAction.subscribe(onNext: { [weak self] in
+        shakeAction.subscribe(onNext: { [weak self] in
             self?.requestData()
-            })
+            }).disposed(by: disposeBag)
     }
 
     private func requestData() {
         responseModel.requestData()
-    }
-
-    func getData(completion: @escaping (PresentableAnswer?) -> Void) {
-        responseModel.getAnswer { (answer) in
-                completion(answer)
-        }
     }
 }

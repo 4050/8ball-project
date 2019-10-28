@@ -12,12 +12,21 @@ import RxSwift
 class HardCodedAnswerModel {
 
     private let storageAnswer: PersistenceStore
+    private let disposeBag = DisposeBag()
     public let answer = BehaviorSubject<[Answer?]>(value: [nil])
-    public let customAnswer = PublishSubject<Answer?>()
     public let savedCustomAnswer = PublishSubject<Answer?>()
 
     init( storageAnswer: PersistenceStore) {
         self.storageAnswer = storageAnswer
+        setupBindigns()
+    }
+
+    func setupBindigns() {
+        savedCustomAnswer
+            .bind { [weak self ] answer in
+                guard let answer = answer else { return }
+                self?.storageAnswer.saveAnswer(answer: answer)
+        }.disposed(by: disposeBag)
     }
 
     func getSavedAnswer() -> Answer {
@@ -29,17 +38,6 @@ class HardCodedAnswerModel {
 
     func requestData() {
         let answers = storageAnswer.getMotivationAnswers()
-        //let presentableAnswers = answers.map { $0.toPresentableAnswer() }
         self.answer.onNext(answers)
-    }
-
-    func getMotivationAnswers() -> [PresentableAnswer] {
-        let answers = storageAnswer.getMotivationAnswers()
-        let presentableAnswers = answers.map { $0.toPresentableAnswer() }
-        return presentableAnswers
-    }
-
-    func saveCustomAnswer(answer: Answer) {
-        storageAnswer.saveAnswer(answer: answer)
     }
 }
