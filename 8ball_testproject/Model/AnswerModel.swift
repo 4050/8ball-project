@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import RxSwift
 
 struct Answer {
     var answer: String?

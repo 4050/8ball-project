@@ -13,9 +13,9 @@ import RxSwift
 class ResponseViewController: UIViewController {
 
     private var responseViewModel: ResponseViewModel
-    private var shouldAnimate: Bool = true
     private let disposeBag = DisposeBag()
-    let shakeAction = PublishSubject<Void>()
+    private let shouldAnimates = BehaviorRelay(value: false)
+    private let shakeAction = PublishSubject<Void>()
 
     private let answerLabel: UILabel = {
         let label = UILabel()
@@ -104,9 +104,7 @@ class ResponseViewController: UIViewController {
 
     private func setupBindings() {
         responseViewModel.answerStream.bind(to: answerLabel.rx.text).disposed(by: disposeBag)
-        responseViewModel.loading.subscribe(onNext: { [weak self] state in
-            self?.shouldAnimate = state
-        }).disposed(by: disposeBag)
+        responseViewModel.loading.bind(to: self.shouldAnimates).disposed(by: disposeBag)
     }
 
     private func setupLayout() {
@@ -160,7 +158,7 @@ extension ResponseViewController {
                         answerLabel.transform = .identity
                 },
                     completion: { _ in
-                        if self.shouldAnimate {
+                        if self.shouldAnimates.value {
                             self.animateTriangleAndText(triangleImage: triangleImage,
                                                         answerLabel: answerLabel)
                         }

@@ -13,8 +13,9 @@ class ResponseViewModel {
 
     private let responseModel: ResponseModel!
     private let disposeBag = DisposeBag()
-    public let shakeAction = PublishSubject<Void>()
-    public var loading: Observable<Bool> {
+    let shakeAction = PublishSubject<Void>()
+
+    var loading: Observable<Bool> {
         return responseModel.loading.asObservable()
     }
 

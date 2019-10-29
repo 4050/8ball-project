@@ -16,9 +16,9 @@ class ResponseModel {
     private let storageAnswer: PersistenceStore
     private let disposeBag = DisposeBag()
 
-    public let answer = BehaviorSubject<Answer?>(value: nil)
-    public let loading = PublishSubject<Bool>()
-    public let shakeAction = PublishSubject<Void>()
+    let answer = BehaviorSubject<Answer?>(value: nil)
+    let loading = PublishSubject<Bool>()
+    let shakeAction = PublishSubject<Void>()
 
     init(networkDataFetch: NetworkDataFetcher,
          hardCodedAnswerModel: HardCodedAnswerModel,
@@ -30,7 +30,7 @@ class ResponseModel {
     }
 
     private func setupBindigns() {
-        shakeAction.subscribe(onNext: {[weak self] in
+        shakeAction.subscribe(onNext: { [weak self] in
             self?.requestData()
         }).disposed(by: disposeBag)
     }
@@ -41,8 +41,7 @@ class ResponseModel {
             self.loading.onNext(false)
             if error != nil {
                 let answer = self.hardCodedAnswerModel.getSavedAnswer()
-                let response = answer
-                self.answer.onNext(response)
+                self.answer.onNext(answer)
             } else {
                 self.storageAnswer.saveAnswer(answer: response)
                 self.answer.onNext(response)

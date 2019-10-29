@@ -30,7 +30,8 @@ class HardCodedAnswersTableViewController: UIViewController, UITabBarDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UITableViewCell.self,
+                           forCellReuseIdentifier: String(describing: UITableViewCell.self))
         setupBindings()
         view.backgroundColor = .white
         safeArea = view.layoutMarginsGuide
@@ -46,7 +47,7 @@ class HardCodedAnswersTableViewController: UIViewController, UITabBarDelegate {
 
     private func setupBindings() {
         hardCodedAnswerViewModel.answerStream.bind(
-        to: tableView.rx.items(cellIdentifier: "cell")) { _, answer, cell in
+        to: tableView.rx.items(cellIdentifier: String(describing: UITableViewCell.self))) { _, answer, cell in
             cell.textLabel?.text = answer
             cell.textLabel?.numberOfLines = 0
             cell.selectionStyle = .none
