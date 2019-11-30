@@ -7,12 +7,18 @@
 //
 
 import Foundation
+import RxSwift
 
 class ResponseModel {
 
     private let networkDataFetch: DataFetcher
     private let hardCodedAnswerModel: HardCodedAnswerModel
     private let storageAnswer: PersistenceStore
+    private let disposeBag = DisposeBag()
+
+    let answer = BehaviorSubject<Answer?>(value: nil)
+    let loading = PublishSubject<Bool>()
+    let shakeAction = PublishSubject<Void>()
 
     init(networkDataFetch: NetworkDataFetcher,
          hardCodedAnswerModel: HardCodedAnswerModel,
@@ -20,19 +26,25 @@ class ResponseModel {
         self.networkDataFetch = networkDataFetch
         self.hardCodedAnswerModel = hardCodedAnswerModel
         self.storageAnswer = storageAnswer
+        setupBindigns()
     }
 
-    func getAnswer(completion: @escaping (PresentableAnswer?) -> Void) {
-        networkDataFetch.dataAnswerFetch(urlString: L10n.URLstring.answerURL) { (response, error) in
-            let responseAnswer = response?.toPresentableAnswer()
+    private func setupBindigns() {
+        shakeAction.subscribe(onNext: { [weak self] in
+            self?.requestData()
+        }).disposed(by: disposeBag)
+    }
 
+    func requestData() {
+        self.loading.onNext(true)
+        networkDataFetch.dataAnswerFetch(urlString: L10n.URLstring.answerURL) { (response, error) in
+            self.loading.onNext(false)
             if error != nil {
                 let answer = self.hardCodedAnswerModel.getSavedAnswer()
-                let responseAnswer = answer.toPresentableAnswer()
-                completion(responseAnswer)
+                self.answer.onNext(answer)
             } else {
                 self.storageAnswer.saveAnswer(answer: response)
-                completion(responseAnswer)
+                self.answer.onNext(response)
             }
         }
     }

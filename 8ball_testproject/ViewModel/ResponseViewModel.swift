@@ -7,20 +7,34 @@
 //
 
 import Foundation
+import RxSwift
 
 class ResponseViewModel {
 
     private let responseModel: ResponseModel!
+    private let disposeBag = DisposeBag()
+    let shakeAction = PublishSubject<Void>()
+
+    var loading: Observable<Bool> {
+        return responseModel.loading.asObservable()
+    }
+
+    var answerStream: Observable<String?> {
+        return responseModel.answer.asObservable()
+            .filter { $0 != nil }
+            .map { answer -> String? in
+                return answer?.toPresentableAnswer().answer
+        }
+    }
 
     init(responseModel: ResponseModel) {
         self.responseModel = responseModel
+        setupBindigns()
     }
 
-    func getData(completion: @escaping (PresentableAnswer?) -> Void) {
-        responseModel.getAnswer { (answer) in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                completion(answer)
-            }
-        }
+    private func setupBindigns() {
+        shakeAction
+            .bind(to: responseModel.shakeAction)
+            .disposed(by: disposeBag)
     }
 }

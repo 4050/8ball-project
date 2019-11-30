@@ -9,4 +9,6 @@ target '8ball_testproject' do
   pod 'Alamofire', '~> 4.8.2'
   pod 'SwiftLint', '~> 0.34.0'
   pod 'SwiftGen',  '~> 6.1.0'
+  pod 'RxSwift', '~> 5'
+  pod 'RxCocoa', '~> 5'
 end
